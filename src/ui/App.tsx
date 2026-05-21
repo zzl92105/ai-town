@@ -7,8 +7,11 @@ import {
   ClipboardList,
   Coffee,
   FileText,
+  GitBranch,
   KeyRound,
   Library,
+  Lightbulb,
+  Link2,
   Map,
   MapPin,
   MessageSquare,
@@ -44,8 +47,11 @@ import libraryScene from "../assets/ai/locations/library.png";
 import squareScene from "../assets/ai/locations/square.png";
 import townHallScene from "../assets/ai/locations/town-hall.png";
 import { missingLedgerCase } from "../data/casePackage";
+import { caseCatalog } from "../data/caseCatalog";
+import { buildNpcDisclosureContext } from "../domain/aiGuardrails";
 import { getAvailableContradictions } from "../domain/contradictionRules";
 import { getAvailableDeductionRules } from "../domain/deductionRules";
+import { buildDeductionAssist } from "../domain/evidenceChain";
 import type { ClueMark, FinalDeduction } from "../domain/types";
 import { testDeepSeekConnection } from "../services/deepseek";
 import { canUseTopic, getCurrentTasks, getFinalGate, getStageGate, isStageAvailable, useGameStore } from "../store/gameStore";
@@ -194,6 +200,23 @@ function CaseSelect() {
         </div>
       </section>
       <section className="select-grid">
+        <Panel title="案件库" icon={Archive}>
+          <div className="case-catalog">
+            {caseCatalog.map((entry) => (
+              <article key={entry.id} className={entry.status === "playable" ? "playable" : "planned"}>
+                <div>
+                  <strong>{entry.title}</strong>
+                  <span>{entry.status === "playable" ? "可游玩" : "规划中"} · {entry.version}</span>
+                </div>
+                <p>{entry.briefing}</p>
+                <div className="tag-row">{entry.tags.map((tag) => <span key={tag}>{tag}</span>)}</div>
+                <button disabled={entry.status !== "playable"} onClick={startNewGame}>
+                  {entry.status === "playable" ? "开始此案" : "等待案件包"}
+                </button>
+              </article>
+            ))}
+          </div>
+        </Panel>
         <Panel title="故事背景" icon={BookOpen}>
           <div className="story-copy">
             {storyBackground.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
@@ -251,6 +274,7 @@ function DeskView() {
       </section>
       <section className="side-stack">
         <ClueBoard />
+        <EvidenceChainPanel />
         <DeductionNote />
       </section>
       <LogPanel />
@@ -491,6 +515,13 @@ function ClueBoard() {
                     <select value={clueMarks[clue.id] ?? "none"} onChange={(event) => markClue(clue.id, event.target.value as ClueMark)}>
                       {Object.entries(markLabels).map(([value, label]) => <option key={value} value={value}>{label}</option>)}
                     </select>
+                    <button
+                      draggable
+                      onDragStart={(event) => event.dataTransfer.setData("text/plain", clue.id)}
+                      onClick={() => useGameStore.getState().toggleEvidenceChainClue(clue.id)}
+                    >
+                      <Link2 size={14} /> 入链
+                    </button>
                     {firstNpc && <button onClick={() => selectNpc(firstNpc)}><MessageSquare size={14} /> 问相关人</button>}
                   </div>
                 </article>
@@ -520,6 +551,66 @@ function clueTypeLabel(type: string) {
   if (type === "testimony") return "证词";
   if (type === "environment") return "环境";
   return "推理";
+}
+
+function EvidenceChainPanel() {
+  const evidenceChainIds = useGameStore((state) => state.evidenceChainIds);
+  const discoveredClueIds = useGameStore((state) => state.discoveredClueIds);
+  const toggleEvidenceChainClue = useGameStore((state) => state.toggleEvidenceChainClue);
+  const moveEvidenceChainClue = useGameStore((state) => state.moveEvidenceChainClue);
+  const chainClues = evidenceChainIds
+    .map((id) => missingLedgerCase.clues.find((clue) => clue.id === id))
+    .filter(Boolean) as typeof missingLedgerCase.clues;
+  const assist = buildDeductionAssist({
+    requiredEvidenceIds: missingLedgerCase.truth.requiredEvidenceIds,
+    selectedEvidenceIds: evidenceChainIds,
+    discoveredClueIds,
+  });
+
+  return (
+    <Panel title="证据链" icon={GitBranch}>
+      <div
+        className="evidence-chain-drop"
+        onDragOver={(event) => event.preventDefault()}
+        onDrop={(event) => {
+          event.preventDefault();
+          const clueId = event.dataTransfer.getData("text/plain");
+          if (clueId) toggleEvidenceChainClue(clueId);
+        }}
+      >
+        {chainClues.length === 0 && <p className="muted">把线索卡拖到这里，或点击“入链”，整理最终推理证据链。</p>}
+        {chainClues.map((clue, index) => (
+          <article
+            key={clue.id}
+            draggable
+            onDragStart={(event) => event.dataTransfer.setData("text/chain-clue", clue.id)}
+            onDragOver={(event) => event.preventDefault()}
+            onDrop={(event) => {
+              event.preventDefault();
+              const draggedId = event.dataTransfer.getData("text/chain-clue");
+              if (draggedId) moveEvidenceChainClue(draggedId, clue.id);
+            }}
+          >
+            <span>{index + 1}</span>
+            <img className="mini-clue-image" src={getClueImage(clue.id)} alt="" />
+            <div>
+              <strong>{clue.title}</strong>
+              <small>{clue.source}</small>
+            </div>
+            <button onClick={() => toggleEvidenceChainClue(clue.id)}>移除</button>
+          </article>
+        ))}
+      </div>
+      <div className="assist-meter">
+        <span>关键覆盖</span>
+        <strong>{Math.round(assist.coverage * 100)}%</strong>
+        <div><i style={{ width: `${assist.coverage * 100}%` }} /></div>
+      </div>
+      {assist.missingDiscoveredEvidenceIds.length > 0 && (
+        <p className="muted">已发现但未入链：{assist.missingDiscoveredEvidenceIds.map((id) => missingLedgerCase.clues.find((clue) => clue.id === id)?.title ?? id).join("、")}</p>
+      )}
+    </Panel>
+  );
 }
 
 function DeductionNote() {
@@ -588,6 +679,12 @@ function InterrogationView() {
   const topics = missingLedgerCase.topics.filter((topic) => topic.npcId === currentNpcId);
   const visibleMessages = dialogue.filter((message) => message.npcId === currentNpcId);
   const availableClues = missingLedgerCase.clues.filter((clue) => discoveredClueIds.includes(clue.id));
+  const disclosure = buildNpcDisclosureContext({
+    casePackage: missingLedgerCase,
+    npc,
+    stageId,
+    discoveredClueIds,
+  });
 
   return (
     <main className="workspace interrogation-layout">
@@ -651,6 +748,13 @@ function InterrogationView() {
               {(revealedFactIds[npc.id] ?? []).map((factId) => <span key={factId}>{factId}</span>)}
             </div>
           )}
+        </Panel>
+        <Panel title="AI 透露边界" icon={Lightbulb}>
+          <div className="ai-boundary">
+            <p>{disclosure.stageDisclosure}</p>
+            <span>证据强度：{disclosure.evidenceCompleteness.status === "strong" ? "强" : disclosure.evidenceCompleteness.status === "partial" ? "中" : "弱"}</span>
+            <span>允许话题：{disclosure.allowedTopicIds.length}</span>
+          </div>
         </Panel>
         <Panel title="已解锁话题" icon={MessageSquare}>
           <div className="topic-list">
@@ -855,6 +959,7 @@ function MapView() {
 function DeductionView() {
   const stageId = useGameStore((state) => state.stageId);
   const discoveredClueIds = useGameStore((state) => state.discoveredClueIds);
+  const evidenceChainIds = useGameStore((state) => state.evidenceChainIds);
   const submitFinal = useGameStore((state) => state.submitFinal);
   const finalScore = useGameStore((state) => state.finalScore);
   const lastFinalDeduction = useGameStore((state) => state.lastFinalDeduction);
@@ -869,6 +974,11 @@ function DeductionView() {
   });
   const discoveredClues = missingLedgerCase.clues.filter((clue) => discoveredClueIds.includes(clue.id));
   const finalGate = getFinalGate(stageId);
+  const assist = buildDeductionAssist({
+    requiredEvidenceIds: missingLedgerCase.truth.requiredEvidenceIds,
+    selectedEvidenceIds: answer.evidenceClueIds,
+    discoveredClueIds,
+  });
   const confidence = useMemo(() => {
     const keyCount = discoveredClues.filter((clue) => clue.isKey).length;
     return Math.min(98, Math.round((keyCount / 6) * 70 + (answer.evidenceClueIds.length / 5) * 28));
@@ -912,6 +1022,14 @@ function DeductionView() {
           </select>
         </Panel>
         <Panel title="5. 关键证据" icon={Archive}>
+          <div className="deduction-helper">
+            <button onClick={() => setAnswer({ ...answer, evidenceClueIds: evidenceChainIds })}>
+              <GitBranch size={15} /> 使用证据链
+            </button>
+            <span>关键覆盖 {Math.round(assist.coverage * 100)}%</span>
+            {assist.missingDiscoveredEvidenceIds.length > 0 && <span>可补入 {assist.missingDiscoveredEvidenceIds.length} 条已发现关键证据</span>}
+            {assist.undiscoveredEvidenceIds.length > 0 && <span>仍有 {assist.undiscoveredEvidenceIds.length} 条关键证据未发现</span>}
+          </div>
           <div className="evidence-pills">
             {discoveredClues.map((clue) => (
               <button key={clue.id} className={answer.evidenceClueIds.includes(clue.id) ? "selected" : ""} onClick={() => toggleEvidence(clue.id)}>

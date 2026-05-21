@@ -9,9 +9,11 @@ AI 小镇是一款 macOS 桌面端 AI 文本解谜游戏原型。玩家在小镇
 - 桌面端应用：基于 Tauri 打包为 macOS App。
 - 案件调查：地点搜索、线索发现、线索标记、阶段推进。
 - NPC 问询：固定话题对话 + DeepSeek 自由问答。
+- AI 防剧透：按调查阶段、证据完整度、NPC 口吻和允许话题约束自由问答，并对模型返回做二次校验。
 - 推理系统：矛盾识别、推理笔记、最终答案评分和结局复盘。
+- 证据链：在线索板拖放/排序关键线索，并在最终推理中一键引用。
 - 本地存档：Tauri 桌面环境使用 SQLite，Web 调试环境使用 localStorage 兜底。
-- 案件配置：人物、地点、线索、话题、阶段和真相均以 JSON 组织。
+- 案件配置：人物、地点、线索、话题、阶段和真相均以 JSON 组织；首页已有案件库元信息入口。
 
 ## 技术栈
 
@@ -30,6 +32,8 @@ AI 小镇是一款 macOS 桌面端 AI 文本解谜游戏原型。玩家在小镇
 cases/missing-ledger/        内置案件包
 docs/                        PRD 和界面设计稿
 src/domain/                  案件类型、校验、推理评分规则
+src/domain/aiGuardrails.ts   NPC AI 透露边界和模型输出二次校验
+src/domain/evidenceChain.ts  证据链排序和最终推理辅助
 src/services/deepseek.ts     DeepSeek NPC 自由问答封装
 src/storage/                 前端存档仓储接口和 SQLite 适配
 src/store/gameStore.ts       游戏主状态和调查流程

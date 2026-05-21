@@ -4,6 +4,7 @@ import { getAvailableContradictions, getContradictionRule } from "../domain/cont
 import { scoreDeduction } from "../domain/deduction";
 import { getAvailableDeductionRules, getDeductionRule } from "../domain/deductionRules";
 import { buildEndingReview } from "../domain/endingReview";
+import { moveEvidenceChainItem, toggleEvidenceChainItem } from "../domain/evidenceChain";
 import type {
   ClueMark,
   DeductionScore,
@@ -231,6 +232,7 @@ type GameState = {
   events: InvestigationEvent[];
   note: string;
   deductionNotes: DeductionNote[];
+  evidenceChainIds: string[];
   apiKeyConfigured: boolean;
   aiBusy: boolean;
   aiError?: string;
@@ -253,6 +255,8 @@ type GameState = {
   identifyContradiction: (ruleId: string) => void;
   markClue: (clueId: string, mark: ClueMark) => void;
   setNote: (note: string) => void;
+  toggleEvidenceChainClue: (clueId: string) => void;
+  moveEvidenceChainClue: (draggedId: string, targetId: string) => void;
   advanceStage: () => void;
   setApiKeyConfigured: (configured: boolean) => void;
   saveApiKey: (apiKey: string) => void;
@@ -301,6 +305,7 @@ function snapshotFromState(state: GameState): SaveSnapshot | undefined {
     events: state.events,
     note: state.note,
     deductionNotes: state.deductionNotes,
+    evidenceChainIds: state.evidenceChainIds,
     lastFinalDeduction: state.lastFinalDeduction,
     finalScore: state.finalScore,
     endingReview: state.endingReview,
@@ -344,6 +349,7 @@ export const useGameStore = create<GameState>((set, get) => ({
   events: [initialEvent()],
   note: "",
   deductionNotes: [],
+  evidenceChainIds: [],
   apiKeyConfigured: Boolean(settings.deepseekApiKey || import.meta.env.DEEPSEEK_API_KEY),
   aiBusy: false,
   aiError: undefined,
@@ -379,6 +385,7 @@ export const useGameStore = create<GameState>((set, get) => ({
             events: snapshot.events,
             note: snapshot.note,
             deductionNotes: snapshot.deductionNotes ?? [],
+            evidenceChainIds: snapshot.evidenceChainIds ?? [],
             lastFinalDeduction: snapshot.lastFinalDeduction,
             finalScore: snapshot.finalScore,
             endingReview: snapshot.endingReview,
@@ -417,6 +424,7 @@ export const useGameStore = create<GameState>((set, get) => ({
       events: [initialEvent()],
       note: "",
       deductionNotes: [],
+      evidenceChainIds: [],
       createdAt,
       updatedAt: createdAt,
     };
@@ -445,6 +453,7 @@ export const useGameStore = create<GameState>((set, get) => ({
       events: initial.events,
       note: initial.note,
       deductionNotes: initial.deductionNotes,
+      evidenceChainIds: initial.evidenceChainIds,
       finalScore: undefined,
       lastFinalDeduction: undefined,
       endingReview: undefined,
@@ -471,6 +480,7 @@ export const useGameStore = create<GameState>((set, get) => ({
       events: snapshot.events,
       note: snapshot.note,
       deductionNotes: snapshot.deductionNotes ?? [],
+      evidenceChainIds: snapshot.evidenceChainIds ?? [],
       lastFinalDeduction: snapshot.lastFinalDeduction,
       finalScore: snapshot.finalScore,
       endingReview: snapshot.endingReview,
@@ -849,6 +859,16 @@ export const useGameStore = create<GameState>((set, get) => ({
         ? [manualNote, ...state.deductionNotes.filter((item) => item.id !== manualNote.id)]
         : state.deductionNotes.filter((item) => item.id !== manualNote.id),
     });
+    persistState(get());
+  },
+  toggleEvidenceChainClue: (clueId) => {
+    const state = get();
+    set({ evidenceChainIds: toggleEvidenceChainItem(state.evidenceChainIds, clueId) });
+    persistState(get());
+  },
+  moveEvidenceChainClue: (draggedId, targetId) => {
+    const state = get();
+    set({ evidenceChainIds: moveEvidenceChainItem(state.evidenceChainIds, draggedId, targetId) });
     persistState(get());
   },
   advanceStage: () => {

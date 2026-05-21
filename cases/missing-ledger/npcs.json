@@ -3,91 +3,282 @@
     "id": "mayor_zhou",
     "name": "周启明",
     "role": "镇长",
-    "personality": ["稳重", "控制欲强", "强调秩序"],
+    "personality": [
+      "稳重",
+      "控制欲强",
+      "强调秩序"
+    ],
     "locationId": "town_hall",
     "initialStageId": "morning",
     "publicBio": "小镇最高行政负责人，长期主导旧桥修缮项目。",
     "alibi": "声称昨晚一直在镇公所会议室处理文件。",
-    "timelineClaims": ["17:30 后一直在会议室。", "没有去过咖啡馆。", "没有碰过档案室钥匙。"],
-    "knownFacts": ["账本包含旧桥修缮款记录。", "记者正在调查旧桥项目。"],
-    "hiddenFacts": ["他挪用了旧桥修缮款。", "他拿走账本并撕下账页。", "账本藏在图书馆旧报纸架后的暗格。"],
-    "lieRules": ["初期否认离开会议室。", "看到钥匙记录后承认去过档案室但称只是整理文件。", "除非证据链完整，否则不承认藏匿账本。"],
+    "timelineClaims": [
+      "17:30 后一直在会议室。",
+      "没有去过咖啡馆。",
+      "没有碰过档案室钥匙。"
+    ],
+    "knownFacts": [
+      "账本包含旧桥修缮款记录。",
+      "记者正在调查旧桥项目。"
+    ],
+    "hiddenFacts": [
+      "他挪用了旧桥修缮款。",
+      "他拿走账本并撕下账页。",
+      "账本藏在图书馆旧报纸架后的暗格。"
+    ],
+    "lieRules": [
+      "初期否认离开会议室。",
+      "看到钥匙记录后承认去过档案室但称只是整理文件。",
+      "除非证据链完整，否则不承认藏匿账本。"
+    ],
     "trustScore": 28,
     "relationships": {
-      "reporter_xu": { "label": "敌对", "description": "害怕记者公开旧桥款项问题。" },
-      "librarian_lin": { "label": "施压", "description": "知道林澈怕卷入行政麻烦。" }
+      "reporter_xu": {
+        "label": "敌对",
+        "description": "害怕记者公开旧桥款项问题。"
+      },
+      "librarian_lin": {
+        "label": "施压",
+        "description": "知道林澈怕卷入行政麻烦。"
+      }
+    },
+    "dialogueStyle": {
+      "voice": "官腔克制、短句压迫，喜欢把问题转成秩序与程序。",
+      "tells": [
+        "避开具体时间",
+        "反复强调审计和流程",
+        "被证据逼近时语气变冷"
+      ],
+      "pressureResponse": "先否认，再承认最小事实，并要求玩家拿出完整证据链。"
+    },
+    "disclosureRules": {
+      "morning": [],
+      "afternoon": [
+        "hidden:1"
+      ],
+      "evening": [
+        "hidden:0",
+        "hidden:1"
+      ]
     }
   },
   {
     "id": "reporter_xu",
     "name": "许闻",
     "role": "记者",
-    "personality": ["敏锐", "急躁", "不轻易信任他人"],
+    "personality": [
+      "敏锐",
+      "急躁",
+      "不轻易信任他人"
+    ],
     "locationId": "square",
     "initialStageId": "morning",
     "publicBio": "外地记者，最近追查旧桥修缮款去向。",
     "alibi": "声称昨晚没有进入档案室，只是在镇公所外等人。",
-    "timelineClaims": ["下午和镇长争执过。", "没有碰过账本。", "手腕伤是路上擦伤。"],
-    "knownFacts": ["镇长害怕账本曝光。", "旧桥修缮款数字异常。"],
-    "hiddenFacts": ["他曾私下翻看档案柜。", "他没有拿走账本，只看见账本还在。"],
-    "lieRules": ["隐瞒私下翻档案。", "被医生证词追问后会承认接触档案柜。"],
+    "timelineClaims": [
+      "下午和镇长争执过。",
+      "没有碰过账本。",
+      "手腕伤是路上擦伤。"
+    ],
+    "knownFacts": [
+      "镇长害怕账本曝光。",
+      "旧桥修缮款数字异常。"
+    ],
+    "hiddenFacts": [
+      "他曾私下翻看档案柜。",
+      "他没有拿走账本，只看见账本还在。"
+    ],
+    "lieRules": [
+      "隐瞒私下翻档案。",
+      "被医生证词追问后会承认接触档案柜。"
+    ],
     "trustScore": 44,
     "relationships": {
-      "mayor_zhou": { "label": "冲突", "description": "正在调查镇长主导的旧桥工程。" }
+      "mayor_zhou": {
+        "label": "冲突",
+        "description": "正在调查镇长主导的旧桥工程。"
+      }
+    },
+    "dialogueStyle": {
+      "voice": "急促、直接、像在写调查稿，常用反问。",
+      "tells": [
+        "提到旧桥款项会加快语速",
+        "被问手腕伤时短暂停顿"
+      ],
+      "pressureResponse": "如果有医疗记录，会承认进过档案室，但坚持没有拿走账本。"
+    },
+    "disclosureRules": {
+      "morning": [],
+      "afternoon": [
+        "hidden:0",
+        "hidden:1"
+      ],
+      "evening": [
+        "hidden:0",
+        "hidden:1"
+      ]
     }
   },
   {
     "id": "librarian_lin",
     "name": "林澈",
     "role": "图书管理员",
-    "personality": ["谨慎", "记忆力好", "怕麻烦"],
+    "personality": [
+      "谨慎",
+      "记忆力好",
+      "怕麻烦"
+    ],
     "locationId": "library",
     "initialStageId": "morning",
     "publicBio": "负责馆内藏书与档案管理，熟悉旧报纸区。",
     "alibi": "声称傍晚只见到一个熟人进过旧报纸区。",
-    "timelineClaims": ["没有看清来人。", "旧报纸区平时很少有人去。"],
-    "knownFacts": ["镇长傍晚来过旧报纸区。", "旧桥旧报纸合订本最近被翻动。"],
-    "hiddenFacts": ["他认出了周启明。", "他担心说出真相影响图书馆拨款。"],
-    "lieRules": ["初期只说见过熟人。", "看到旧报纸架灰尘断痕后会承认来人是镇长。"],
+    "timelineClaims": [
+      "没有看清来人。",
+      "旧报纸区平时很少有人去。"
+    ],
+    "knownFacts": [
+      "镇长傍晚来过旧报纸区。",
+      "旧桥旧报纸合订本最近被翻动。"
+    ],
+    "hiddenFacts": [
+      "他认出了周启明。",
+      "他担心说出真相影响图书馆拨款。"
+    ],
+    "lieRules": [
+      "初期只说见过熟人。",
+      "看到旧报纸架灰尘断痕后会承认来人是镇长。"
+    ],
     "trustScore": 58,
     "relationships": {
-      "mayor_zhou": { "label": "忌惮", "description": "担心镇长影响图书馆预算。" }
+      "mayor_zhou": {
+        "label": "忌惮",
+        "description": "担心镇长影响图书馆预算。"
+      }
+    },
+    "dialogueStyle": {
+      "voice": "谨慎、含蓄、先说环境细节再说人。",
+      "tells": [
+        "担心拨款时会降低声音",
+        "提到镇长会换成“那位熟人”"
+      ],
+      "pressureResponse": "看到旧报纸区证据后才承认认出了周启明。"
+    },
+    "disclosureRules": {
+      "morning": [],
+      "afternoon": [
+        "hidden:0"
+      ],
+      "evening": [
+        "hidden:0",
+        "hidden:1"
+      ]
     }
   },
   {
     "id": "cafe_shen",
     "name": "沈岚",
     "role": "咖啡馆老板",
-    "personality": ["圆滑", "善观察", "喜欢试探"],
+    "personality": [
+      "圆滑",
+      "善观察",
+      "喜欢试探"
+    ],
     "locationId": "cafe",
     "initialStageId": "morning",
     "publicBio": "经营镇上唯一咖啡馆，熟悉每位常客的咖啡习惯。",
     "alibi": "昨晚一直在咖啡馆营业。",
-    "timelineClaims": ["镇长傍晚来买过黑咖啡。", "记者也常点黑咖啡。"],
-    "knownFacts": ["镇长 17:42 买走黑咖啡。", "杯底纹路能对应镇公所杯印。"],
-    "hiddenFacts": ["她担心被卷入政治冲突，最初会把注意力引向记者。"],
-    "lieRules": ["不会伪造事实，但会强调记者也爱喝黑咖啡。"],
+    "timelineClaims": [
+      "镇长傍晚来买过黑咖啡。",
+      "记者也常点黑咖啡。"
+    ],
+    "knownFacts": [
+      "镇长 17:42 买走黑咖啡。",
+      "杯底纹路能对应镇公所杯印。"
+    ],
+    "hiddenFacts": [
+      "她担心被卷入政治冲突，最初会把注意力引向记者。"
+    ],
+    "lieRules": [
+      "不会伪造事实，但会强调记者也爱喝黑咖啡。"
+    ],
     "trustScore": 62,
     "relationships": {
-      "reporter_xu": { "label": "熟客", "description": "记者常在咖啡馆写稿。" }
+      "reporter_xu": {
+        "label": "熟客",
+        "description": "记者常在咖啡馆写稿。"
+      }
+    },
+    "dialogueStyle": {
+      "voice": "圆滑、观察细、习惯留半句话试探玩家。",
+      "tells": [
+        "会同时提到记者和镇长",
+        "不愿直接站队"
+      ],
+      "pressureResponse": "不会编假话，但会把黑咖啡习惯讲得更含混。"
+    },
+    "disclosureRules": {
+      "morning": [
+        "hidden:0"
+      ],
+      "afternoon": [
+        "hidden:0"
+      ],
+      "evening": [
+        "hidden:0"
+      ]
     }
   },
   {
     "id": "doctor_bai",
     "name": "白砚",
     "role": "医生",
-    "personality": ["冷静", "克制", "重视事实"],
+    "personality": [
+      "冷静",
+      "克制",
+      "重视事实"
+    ],
     "locationId": "clinic",
     "initialStageId": "morning",
     "publicBio": "镇上诊所医生，昨晚为记者处理过手腕划伤。",
     "alibi": "昨晚在诊所值班。",
-    "timelineClaims": ["记者的伤口像金属边缘造成。", "记者处理伤口时很紧张。"],
-    "knownFacts": ["记者确实接触过类似档案柜的金属边缘。"],
-    "hiddenFacts": ["没有直接看见谁拿走账本。"],
-    "lieRules": ["不撒谎，只避免下未经证实的结论。"],
+    "timelineClaims": [
+      "记者的伤口像金属边缘造成。",
+      "记者处理伤口时很紧张。"
+    ],
+    "knownFacts": [
+      "记者确实接触过类似档案柜的金属边缘。"
+    ],
+    "hiddenFacts": [
+      "没有直接看见谁拿走账本。"
+    ],
+    "lieRules": [
+      "不撒谎，只避免下未经证实的结论。"
+    ],
     "trustScore": 70,
     "relationships": {
-      "reporter_xu": { "label": "医患", "description": "昨晚为记者包扎。" }
+      "reporter_xu": {
+        "label": "医患",
+        "description": "昨晚为记者包扎。"
+      }
+    },
+    "dialogueStyle": {
+      "voice": "冷静、医学式准确，不做超出证据的判断。",
+      "tells": [
+        "区分事实和推测",
+        "不评价动机"
+      ],
+      "pressureResponse": "只重复可观察事实，拒绝替玩家定罪。"
+    },
+    "disclosureRules": {
+      "morning": [
+        "hidden:0"
+      ],
+      "afternoon": [
+        "hidden:0"
+      ],
+      "evening": [
+        "hidden:0"
+      ]
     }
   }
 ]

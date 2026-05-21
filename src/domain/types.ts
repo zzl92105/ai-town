@@ -34,6 +34,12 @@ export type Npc = {
   knownFacts: string[];
   hiddenFacts: string[];
   lieRules: string[];
+  dialogueStyle?: {
+    voice: string;
+    tells: string[];
+    pressureResponse: string;
+  };
+  disclosureRules?: Partial<Record<StageId, string[]>>;
   trustScore: number;
   relationships: Record<string, Relationship>;
 };
@@ -179,6 +185,7 @@ export type SaveSnapshot = {
   events: InvestigationEvent[];
   note: string;
   deductionNotes: DeductionNote[];
+  evidenceChainIds: string[];
   lastFinalDeduction?: FinalDeduction;
   finalScore?: DeductionScore;
   endingReview?: string;

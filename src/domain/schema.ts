@@ -57,6 +57,14 @@ const npcSchema = z.object({
   knownFacts: z.array(z.string()),
   hiddenFacts: z.array(z.string()),
   lieRules: z.array(z.string()),
+  dialogueStyle: z
+    .object({
+      voice: z.string(),
+      tells: z.array(z.string()),
+      pressureResponse: z.string(),
+    })
+    .optional(),
+  disclosureRules: z.record(stageId, z.array(z.string())).optional(),
   trustScore: z.number().min(0).max(100),
   relationships: z.record(z.object({ label: z.string(), description: z.string() })),
 });

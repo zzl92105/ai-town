@@ -15,7 +15,7 @@
         "id": "square_fountain",
         "name": "喷泉长椅",
         "description": "镇民常在这里闲谈，能看见镇公所门口的来往。",
-        "clueIds": []
+        "clueIds": ["clue_town_gossip_red_herring"]
       }
     ]
   },
@@ -36,7 +36,7 @@
         "id": "cafe_cups",
         "name": "外带杯架",
         "description": "杯底的凸纹和档案柜旁的咖啡印能够对应。",
-        "clueIds": []
+        "clueIds": ["clue_cafe_loyalty_card"]
       }
     ]
   },

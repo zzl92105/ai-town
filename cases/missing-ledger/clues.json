@@ -188,5 +188,37 @@
     "discoveryText": "你把旧报纸架断痕和图书管理员的含糊目击合并，推断账本藏匿点在图书馆旧报纸区。",
     "contradictionIds": ["contradiction_librarian_sighting"],
     "scoringWeight": 10
+  },
+  {
+    "id": "clue_town_gossip_red_herring",
+    "title": "广场流言",
+    "description": "有人说记者深夜背着包离开广场，但说话者没有看清背包里装的是什么。",
+    "type": "testimony",
+    "source": "喷泉长椅",
+    "relatedNpcIds": ["reporter_xu"],
+    "relatedLocationIds": ["square"],
+    "isKey": false,
+    "isRedHerring": true,
+    "unlocksTopicIds": [],
+    "discoveryText": "广场流言把嫌疑引向记者，但它只证明记者匆忙离开过。",
+    "requiredObjectId": "square_fountain",
+    "contradictionIds": [],
+    "scoringWeight": 1
+  },
+  {
+    "id": "clue_cafe_loyalty_card",
+    "title": "咖啡馆集点卡",
+    "description": "集点卡显示记者常买黑咖啡，解释了沈岚为什么一开始会把注意力引向记者。",
+    "type": "physical",
+    "source": "外带杯架",
+    "relatedNpcIds": ["cafe_shen", "reporter_xu"],
+    "relatedLocationIds": ["cafe"],
+    "isKey": false,
+    "isRedHerring": true,
+    "unlocksTopicIds": [],
+    "discoveryText": "记者确实常买黑咖啡，但这不能解释镇公所档案柜旁的杯印时间。",
+    "requiredObjectId": "cafe_cups",
+    "contradictionIds": [],
+    "scoringWeight": 1
   }
 ]

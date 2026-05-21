@@ -37,6 +37,8 @@ pub struct SaveSnapshot {
     pub events: serde_json::Value,
     pub note: String,
     pub deduction_notes: Option<serde_json::Value>,
+    #[serde(default)]
+    pub evidence_chain_ids: Vec<String>,
     pub last_final_deduction: Option<serde_json::Value>,
     pub final_score: Option<serde_json::Value>,
     pub ending_review: Option<String>,

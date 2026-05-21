@@ -1,4 +1,5 @@
 import { missingLedgerCase } from "../data/casePackage";
+import { buildNpcDisclosureContext, sanitizeNpcReply } from "../domain/aiGuardrails";
 import type { Clue, DialogueMessage, InvestigationEvent, Npc, StageId, StructuredNpcReply } from "../domain/types";
 
 export type NpcReplyRequest = {
@@ -32,10 +33,22 @@ const fallbackReply = (npc: Npc, playerMessage: string): StructuredNpcReply => (
 });
 
 export function buildNpcPrompt(request: NpcReplyRequest) {
+  const disclosure = buildNpcDisclosureContext({
+    casePackage: missingLedgerCase,
+    npc: request.npc,
+    stageId: request.stageId,
+    discoveredClueIds: request.discoveredClues.map((clue) => clue.id),
+  });
   const truthBoundary = {
     npcKnownFacts: request.npc.knownFacts,
     npcHiddenFacts: request.npc.hiddenFacts,
     lieRules: request.npc.lieRules,
+    dialogueStyle: request.npc.dialogueStyle,
+    stageDisclosure: disclosure.stageDisclosure,
+    evidenceCompleteness: disclosure.evidenceCompleteness,
+    allowedFactIds: disclosure.allowedFactIds,
+    allowedTopicIds: disclosure.allowedTopicIds,
+    forbiddenFactHints: disclosure.forbiddenFactHints,
     discoveredClues: request.discoveredClues.map((clue) => ({
       id: clue.id,
       title: clue.title,
@@ -76,6 +89,7 @@ export function buildNpcPrompt(request: NpcReplyRequest) {
         alibi: request.npc.alibi,
         timelineClaims: request.npc.timelineClaims,
         trustScore: request.npc.trustScore,
+        dialogueStyle: request.npc.dialogueStyle,
       },
       truthBoundary,
       playerMessage: request.playerMessage,
@@ -104,6 +118,23 @@ export function parseNpcReply(raw: string, npc: Npc, playerMessage: string): Str
   } catch {
     return fallbackReply(npc, playerMessage);
   }
+}
+
+export function parseConstrainedNpcReply(
+  raw: string,
+  request: NpcReplyRequest,
+): StructuredNpcReply {
+  const disclosure = buildNpcDisclosureContext({
+    casePackage: missingLedgerCase,
+    npc: request.npc,
+    stageId: request.stageId,
+    discoveredClueIds: request.discoveredClues.map((clue) => clue.id),
+  });
+  return sanitizeNpcReply(parseNpcReply(raw, request.npc, request.playerMessage), {
+    allowedFactIds: disclosure.allowedFactIds,
+    allowedTopicIds: disclosure.allowedTopicIds,
+    blockedPhrases: disclosure.forbiddenFactHints,
+  });
 }
 
 export const deepSeekHttpTransport: DeepSeekTransport = async ({ apiKey, systemPrompt, userPrompt }) => {
@@ -148,7 +179,7 @@ export async function createNpcReply(
   try {
     const prompt = buildNpcPrompt(request);
     const raw = await transport({ apiKey, ...prompt });
-    return { ok: true, reply: parseNpcReply(raw, request.npc, request.playerMessage) };
+    return { ok: true, reply: parseConstrainedNpcReply(raw, request) };
   } catch (error) {
     return {
       ok: false,

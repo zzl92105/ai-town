@@ -175,6 +175,20 @@ describe("gameStore investigation loop", () => {
     expect(useGameStore.getState().view).toBe("select");
   });
 
+  it("maintains a draggable evidence chain and persists it", () => {
+    const saveId = useGameStore.getState().activeSaveId!;
+
+    useGameStore.getState().toggleEvidenceChainClue("clue_spare_key_log");
+    useGameStore.getState().toggleEvidenceChainClue("clue_cafe_receipt_time");
+    useGameStore.getState().moveEvidenceChainClue("clue_cafe_receipt_time", "clue_spare_key_log");
+
+    expect(useGameStore.getState().evidenceChainIds).toEqual(["clue_cafe_receipt_time", "clue_spare_key_log"]);
+
+    useGameStore.getState().startNewGame();
+    useGameStore.getState().loadSave(saveId);
+    expect(useGameStore.getState().evidenceChainIds).toEqual(["clue_cafe_receipt_time", "clue_spare_key_log"]);
+  });
+
   it("combines discovered clues into deduction clues and notes", () => {
     useGameStore.getState().investigateObject("spare_key_box");
     useGameStore.getState().investigateObject("archive_schedule");
