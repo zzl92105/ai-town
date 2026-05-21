@@ -1,0 +1,122 @@
+[
+  {
+    "id": "topic_mayor_alibi",
+    "title": "昨晚行踪",
+    "npcId": "mayor_zhou",
+    "requiredClueIds": [],
+    "stageId": "morning",
+    "revealsClueIds": [],
+    "promptHint": "询问镇长案发时在哪里。",
+    "revealCondition": "always",
+    "attitudeDelta": -2,
+    "response": "昨晚我一直在会议室整理镇务文件。账本失踪很遗憾，但镇公所不是谁都能随便进出的地方。"
+  },
+  {
+    "id": "topic_mayor_key_log",
+    "title": "备用钥匙记录",
+    "npcId": "mayor_zhou",
+    "requiredClueIds": ["clue_spare_key_log"],
+    "stageId": "afternoon",
+    "revealsClueIds": [],
+    "promptHint": "出示备用钥匙登记簿，追问镇长为何借钥匙。",
+    "revealCondition": "clue",
+    "attitudeDelta": -8,
+    "response": "我确实短暂去过档案室。那只是例行检查，钥匙记录不能证明我拿了账本。"
+  },
+  {
+    "id": "topic_mayor_coffee_receipt",
+    "title": "17:42 的咖啡小票",
+    "npcId": "mayor_zhou",
+    "requiredClueIds": ["clue_cafe_receipt_time", "clue_coffee_stain"],
+    "stageId": "afternoon",
+    "revealsClueIds": [],
+    "promptHint": "用咖啡小票和杯印打破整晚会议室的不在场证明。",
+    "revealCondition": "clue",
+    "attitudeDelta": -10,
+    "response": "我买咖啡只是为了提神。你不能因为一张小票就把账本扣到我头上。"
+  },
+  {
+    "id": "topic_mayor_old_bridge",
+    "title": "旧桥修缮款",
+    "npcId": "mayor_zhou",
+    "requiredClueIds": ["clue_torn_ledger_page", "clue_mayor_reporter_argument"],
+    "stageId": "evening",
+    "revealsClueIds": [],
+    "promptHint": "用账页和争执证词追问动机。",
+    "revealCondition": "clue",
+    "attitudeDelta": -15,
+    "response": "旧桥项目的账目会有审计，不需要一个记者煽动镇民。那半张纸不能说明完整事实。"
+  },
+  {
+    "id": "topic_reporter_argument",
+    "title": "与镇长的争执",
+    "npcId": "reporter_xu",
+    "requiredClueIds": ["clue_mayor_reporter_argument"],
+    "stageId": "morning",
+    "revealsClueIds": [],
+    "promptHint": "询问记者为什么与镇长争执。",
+    "revealCondition": "clue",
+    "attitudeDelta": 5,
+    "response": "我只是问旧桥款项为什么多了那么多。周启明反应过度，他比账本失踪本身更害怕账本被看见。"
+  },
+  {
+    "id": "topic_reporter_wrist",
+    "title": "手腕划伤",
+    "npcId": "reporter_xu",
+    "requiredClueIds": ["clue_reporter_wrist"],
+    "stageId": "afternoon",
+    "revealsClueIds": [],
+    "promptHint": "用医生记录追问记者是否进过档案室。",
+    "revealCondition": "clue",
+    "attitudeDelta": -4,
+    "response": "好吧，我进去看过档案柜，但账本当时还在。我想确认旧桥款项，不是为了偷走它。"
+  },
+  {
+    "id": "topic_reporter_archive",
+    "title": "半张账页",
+    "npcId": "reporter_xu",
+    "requiredClueIds": ["clue_torn_ledger_page"],
+    "stageId": "afternoon",
+    "revealsClueIds": [],
+    "promptHint": "询问记者是否知道账页内容。",
+    "revealCondition": "clue",
+    "attitudeDelta": 6,
+    "response": "这就是我想找的东西。旧桥修缮款被拆成几笔报销，账本能证明是谁签字。"
+  },
+  {
+    "id": "topic_librarian_sighting",
+    "title": "旧报纸区目击",
+    "npcId": "librarian_lin",
+    "requiredClueIds": ["clue_library_dust_gap"],
+    "stageId": "afternoon",
+    "revealsClueIds": ["clue_librarian_partial_sighting"],
+    "promptHint": "用灰尘断痕追问旧报纸区来客。",
+    "revealCondition": "clue",
+    "attitudeDelta": -3,
+    "response": "我起初不想说名字。那人是周镇长，他在旧报纸区待了几分钟，还特别避开了正门视线。"
+  },
+  {
+    "id": "topic_cafe_coffee_stain",
+    "title": "黑咖啡杯印",
+    "npcId": "cafe_shen",
+    "requiredClueIds": ["clue_coffee_stain"],
+    "stageId": "morning",
+    "revealsClueIds": [],
+    "promptHint": "询问杯印是否来自咖啡馆。",
+    "revealCondition": "clue",
+    "attitudeDelta": 3,
+    "response": "那是我店里的外带杯没错。记者常买黑咖啡，不过昨晚镇长也买过一杯，时间我得查小票。"
+  },
+  {
+    "id": "topic_doctor_wrist",
+    "title": "记者伤口",
+    "npcId": "doctor_bai",
+    "requiredClueIds": [],
+    "stageId": "morning",
+    "revealsClueIds": ["clue_reporter_wrist"],
+    "promptHint": "询问医生昨晚是否接诊过异常伤口。",
+    "revealCondition": "always",
+    "attitudeDelta": 2,
+    "response": "许闻昨晚来处理过手腕划伤。伤口形状像被档案柜一类的金属边缘划到，但这只说明他接触过柜子。"
+  }
+]

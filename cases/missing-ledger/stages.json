@@ -1,0 +1,41 @@
+[
+  {
+    "id": "morning",
+    "name": "上午",
+    "description": "初步了解案件，发现基础线索。",
+    "advanceHint": "发现至少 3 条线索后可进入下午。",
+    "npcLocations": {
+      "mayor_zhou": "town_hall",
+      "reporter_xu": "square",
+      "librarian_lin": "library",
+      "cafe_shen": "cafe",
+      "doctor_bai": "clinic"
+    }
+  },
+  {
+    "id": "afternoon",
+    "name": "下午",
+    "description": "证词开始互相冲突，开放更多追问。",
+    "advanceHint": "发现至少 6 条线索并问询关键 NPC 后可进入傍晚。",
+    "npcLocations": {
+      "mayor_zhou": "town_hall",
+      "reporter_xu": "cafe",
+      "librarian_lin": "library",
+      "cafe_shen": "cafe",
+      "doctor_bai": "clinic"
+    }
+  },
+  {
+    "id": "evening",
+    "name": "傍晚",
+    "description": "整理证据，提交最终推理。",
+    "advanceHint": "提交结论后进入结局。",
+    "npcLocations": {
+      "mayor_zhou": "library",
+      "reporter_xu": "square",
+      "librarian_lin": "library",
+      "cafe_shen": "cafe",
+      "doctor_bai": "clinic"
+    }
+  }
+]

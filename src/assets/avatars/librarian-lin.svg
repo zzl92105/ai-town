@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Librarian Lin portrait">
+  <defs>
+    <radialGradient id="bg" cx="42%" cy="28%" r="78%">
+      <stop stop-color="#3f5137"/>
+      <stop offset=".58" stop-color="#1d2a2b"/>
+      <stop offset="1" stop-color="#090f0e"/>
+    </radialGradient>
+    <linearGradient id="skin" x1="0" y1="105" x2="0" y2="365" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#ddb17e"/>
+      <stop offset="1" stop-color="#a87150"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="150%">
+      <feDropShadow dx="0" dy="16" stdDeviation="14" flood-color="#020303" flood-opacity=".55"/>
+    </filter>
+  </defs>
+  <rect width="512" height="512" rx="58" fill="url(#bg)"/>
+  <g filter="url(#shadow)">
+    <path d="M63 512c37-105 101-158 193-158s156 53 193 158z" fill="#182222"/>
+    <path d="M153 382l103 74 103-74 38 130H115z" fill="#273438"/>
+    <path d="M189 361h134l13 151H176z" fill="#eee3c7"/>
+    <path d="M190 389l66 67 66-67 26 123H164z" fill="#263337"/>
+    <path d="M151 190c2-90 43-139 113-139 72 0 113 50 117 139 4 96-45 171-123 171-72 0-109-75-107-171z" fill="url(#skin)"/>
+    <path d="M133 201c9-88 50-141 124-157 82 6 124 59 128 159-44-44-91-64-141-60-44 4-81 23-111 58z" fill="#26211d"/>
+    <path d="M145 180c35-73 92-101 171-83 38 24 60 59 66 106-74-56-153-64-237-23z" fill="#332923"/>
+    <path d="M176 258c24-14 48-14 72 0M280 258c24-14 48-14 72 0" stroke="#2d241f" stroke-width="12" stroke-linecap="round"/>
+    <rect x="166" y="230" width="82" height="46" rx="17" fill="none" stroke="#202927" stroke-width="12"/>
+    <rect x="266" y="230" width="82" height="46" rx="17" fill="none" stroke="#202927" stroke-width="12"/>
+    <path d="M248 253h18" stroke="#202927" stroke-width="12" stroke-linecap="round"/>
+    <path d="M258 266l-18 49h39" fill="none" stroke="#986850" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M216 329c27 19 55 19 84 0" stroke="#88463a" stroke-width="12" stroke-linecap="round"/>
+    <rect x="84" y="378" width="88" height="119" rx="10" fill="#89483c" stroke="#d0ae64" stroke-width="6"/>
+    <path d="M111 393v86M139 393v86" stroke="#d5b970" stroke-width="8" stroke-linecap="round"/>
+  </g>
+  <path d="M32 32h448v448H32z" fill="none" stroke="#d7a84a" stroke-opacity=".28" stroke-width="4"/>
+</svg>

@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Cafe owner Shen portrait">
+  <defs>
+    <radialGradient id="bg" cx="42%" cy="28%" r="78%">
+      <stop stop-color="#704625"/>
+      <stop offset=".58" stop-color="#242822"/>
+      <stop offset="1" stop-color="#090f0e"/>
+    </radialGradient>
+    <linearGradient id="skin" x1="0" y1="105" x2="0" y2="365" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#e0a777"/>
+      <stop offset="1" stop-color="#a9694f"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="150%">
+      <feDropShadow dx="0" dy="16" stdDeviation="14" flood-color="#020303" flood-opacity=".55"/>
+    </filter>
+  </defs>
+  <rect width="512" height="512" rx="58" fill="url(#bg)"/>
+  <g filter="url(#shadow)">
+    <path d="M58 512c40-105 106-158 198-158s158 53 198 158z" fill="#211915"/>
+    <path d="M143 383l113 75 113-75 38 129H105z" fill="#7e4133"/>
+    <path d="M185 363h142l13 149H172z" fill="#eee1c3"/>
+    <path d="M190 390l66 68 66-68 27 122H163z" fill="#5a2d26"/>
+    <path d="M143 191c2-92 44-142 116-142s113 52 113 142c0 96-49 172-117 172-67 0-114-76-112-172z" fill="url(#skin)"/>
+    <path d="M123 215c-4-93 35-159 118-177 74 4 119 39 134 104 9 37 7 71-5 102-35-82-81-126-138-133-42 11-79 46-109 104z" fill="#382018"/>
+    <path d="M134 207c9-76 43-128 102-156 9 58 50 93 124 105 14 20 22 45 24 75-28-46-67-76-117-90-52 2-96 24-133 66z" fill="#4b2b20"/>
+    <path d="M175 260c24-16 49-16 74 0M281 260c24-16 49-16 74 0" stroke="#34231c" stroke-width="12" stroke-linecap="round"/>
+    <path d="M258 266l-17 49h40" fill="none" stroke="#9f684d" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M213 329c31 25 64 25 97 0" stroke="#85372e" stroke-width="12" stroke-linecap="round"/>
+    <path d="M348 389h55c0 38-18 61-55 70z" fill="none" stroke="#d7a84a" stroke-width="13" stroke-linejoin="round"/>
+    <path d="M311 383h78v43c0 37-27 68-60 68s-60-31-60-68v-43z" fill="#d7a84a"/>
+    <path d="M293 361c-10-22 8-37 0-56M335 361c-10-22 8-37 0-56" stroke="#f0dfb9" stroke-width="12" stroke-linecap="round"/>
+  </g>
+  <path d="M32 32h448v448H32z" fill="none" stroke="#d7a84a" stroke-opacity=".28" stroke-width="4"/>
+</svg>

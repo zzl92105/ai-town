@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Reporter Xu portrait">
+  <defs>
+    <radialGradient id="bg" cx="39%" cy="29%" r="78%">
+      <stop stop-color="#34525a"/>
+      <stop offset=".58" stop-color="#202725"/>
+      <stop offset="1" stop-color="#090f0e"/>
+    </radialGradient>
+    <linearGradient id="skin" x1="0" y1="105" x2="0" y2="360" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#d7a073"/>
+      <stop offset="1" stop-color="#a6654a"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="150%">
+      <feDropShadow dx="0" dy="16" stdDeviation="14" flood-color="#020303" flood-opacity=".55"/>
+    </filter>
+  </defs>
+  <rect width="512" height="512" rx="58" fill="url(#bg)"/>
+  <g filter="url(#shadow)">
+    <path d="M63 512c35-108 99-162 193-162s158 54 193 162z" fill="#1b2220"/>
+    <path d="M153 382l103 68 103-68 38 130H115z" fill="#3c2d22"/>
+    <path d="M190 360h132l16 152H174z" fill="#e9dcc0"/>
+    <path d="M191 383l65 67 65-67 28 129H163z" fill="#1f2827"/>
+    <path d="M150 188c4-89 47-140 121-140 71 0 110 50 110 142 0 98-49 169-124 169-69 0-112-71-107-171z" fill="url(#skin)"/>
+    <path d="M133 201c18-92 59-146 124-162 82 6 125 57 128 154-56-15-100-46-133-95-23 48-62 83-119 103z" fill="#1e1a18"/>
+    <path d="M140 190c31-27 59-67 84-119 35 50 88 87 157 111-10-88-53-132-130-132-69 13-106 60-111 140z" fill="#2a201c"/>
+    <path d="M175 258c25-18 50-18 75 0M278 258c24-18 49-18 74 0" stroke="#30231b" stroke-width="12" stroke-linecap="round"/>
+    <path d="M258 267l-18 48h40" fill="none" stroke="#96654e" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M214 329c29 22 60 22 91 0" stroke="#7d342d" stroke-width="12" stroke-linecap="round"/>
+    <rect x="82" y="381" width="112" height="92" rx="12" fill="#e5d7b9" stroke="#826f51" stroke-width="8"/>
+    <path d="M105 405h62M105 428h54M105 451h36" stroke="#3b3931" stroke-width="8" stroke-linecap="round"/>
+    <circle cx="361" cy="376" r="20" fill="#d7a84a"/>
+    <path d="M346 393l-37 74" stroke="#a97834" stroke-width="14" stroke-linecap="round"/>
+  </g>
+  <path d="M32 32h448v448H32z" fill="none" stroke="#d7a84a" stroke-opacity=".28" stroke-width="4"/>
+</svg>

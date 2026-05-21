@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Doctor Bai portrait">
+  <defs>
+    <radialGradient id="bg" cx="42%" cy="28%" r="78%">
+      <stop stop-color="#31575d"/>
+      <stop offset=".58" stop-color="#1d2725"/>
+      <stop offset="1" stop-color="#090f0e"/>
+    </radialGradient>
+    <linearGradient id="skin" x1="0" y1="105" x2="0" y2="365" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#d5a073"/>
+      <stop offset="1" stop-color="#9d674c"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="150%">
+      <feDropShadow dx="0" dy="16" stdDeviation="14" flood-color="#020303" flood-opacity=".55"/>
+    </filter>
+  </defs>
+  <rect width="512" height="512" rx="58" fill="url(#bg)"/>
+  <g filter="url(#shadow)">
+    <path d="M56 512c39-104 105-156 200-156s161 52 200 156z" fill="#e7e5d9"/>
+    <path d="M161 389l95 70 95-70 36 123H125z" fill="#eef0e8"/>
+    <path d="M188 363h136l15 149H173z" fill="#f2eee0"/>
+    <path d="M191 390l65 69 65-69 27 122H164z" fill="#263337"/>
+    <path d="M143 189c2-89 44-139 115-139s112 50 112 139c0 98-49 174-115 174s-114-76-112-174z" fill="url(#skin)"/>
+    <path d="M132 200c9-88 52-140 128-156 82 8 122 60 121 156-47-39-95-55-144-48-40 6-75 22-105 48z" fill="#202221"/>
+    <path d="M145 181c40-70 99-96 176-76 35 22 54 54 59 96-70-48-149-55-235-20z" fill="#30302e"/>
+    <path d="M175 258c24-16 49-16 74 0M281 258c24-16 49-16 74 0" stroke="#30231b" stroke-width="12" stroke-linecap="round"/>
+    <path d="M258 265l-17 49h40" fill="none" stroke="#95634a" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M214 329c29 21 59 21 91 0" stroke="#804137" stroke-width="12" stroke-linecap="round"/>
+    <path d="M133 399c-42 29-53 78-28 102 24 22 74 6 99-39" fill="none" stroke="#385d61" stroke-width="15" stroke-linecap="round"/>
+    <circle cx="205" cy="462" r="21" fill="none" stroke="#385d61" stroke-width="15"/>
+    <path d="M362 385v72M326 421h72" stroke="#b64a38" stroke-width="21" stroke-linecap="round"/>
+  </g>
+  <path d="M32 32h448v448H32z" fill="none" stroke="#d7a84a" stroke-opacity=".28" stroke-width="4"/>
+</svg>
