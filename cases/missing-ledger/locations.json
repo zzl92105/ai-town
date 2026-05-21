@@ -1,0 +1,111 @@
+[
+  {
+    "id": "square",
+    "name": "小镇广场",
+    "description": "小镇公共活动中心，公告栏和喷泉旁总有人停留。昨天下午这里有人听见镇长与记者发生争执。",
+    "environmentDetails": ["公告栏贴着旧桥修缮公示。", "喷泉旁能看见镇公所正门。"],
+    "searchableObjects": [
+      {
+        "id": "square_noticeboard",
+        "name": "公告栏",
+        "description": "旧桥修缮公示边角被雨水打湿，工程款数字仍清晰可见。",
+        "clueIds": ["clue_mayor_reporter_argument"]
+      },
+      {
+        "id": "square_fountain",
+        "name": "喷泉长椅",
+        "description": "镇民常在这里闲谈，能看见镇公所门口的来往。",
+        "clueIds": []
+      }
+    ]
+  },
+  {
+    "id": "cafe",
+    "name": "咖啡馆",
+    "description": "镇上唯一的咖啡馆，老板沈岚熟悉每位常客的习惯。柜台小票和杯底纹路常能说明时间。",
+    "environmentDetails": ["黑咖啡杯底有独特圆环纹。", "收银机保留昨晚的小票。"],
+    "searchableObjects": [
+      {
+        "id": "cafe_counter",
+        "name": "收银台",
+        "description": "收银机里留着昨晚 17:42 的黑咖啡小票。",
+        "clueIds": ["clue_cafe_receipt_time"],
+        "requiredStageId": "afternoon"
+      },
+      {
+        "id": "cafe_cups",
+        "name": "外带杯架",
+        "description": "杯底的凸纹和档案柜旁的咖啡印能够对应。",
+        "clueIds": []
+      }
+    ]
+  },
+  {
+    "id": "clinic",
+    "name": "诊所",
+    "description": "医生白砚的诊所整洁安静，诊疗记录能证明记者昨晚曾处理手腕划伤。",
+    "environmentDetails": ["诊台边有昨晚的包扎记录。"],
+    "searchableObjects": [
+      {
+        "id": "clinic_record",
+        "name": "诊疗记录",
+        "description": "记录显示记者昨晚手腕有新鲜划伤，形状接近档案柜金属边缘。",
+        "clueIds": ["clue_reporter_wrist"]
+      }
+    ]
+  },
+  {
+    "id": "library",
+    "name": "图书馆",
+    "description": "旧报纸合订本存放在图书馆角落。书架后有一处长期无人注意的暗格。",
+    "environmentDetails": ["旧报纸架背后有灰尘断痕。", "借阅登记显示傍晚有人翻过旧桥报道。"],
+    "searchableObjects": [
+      {
+        "id": "library_newspaper_shelf",
+        "name": "旧报纸架",
+        "description": "几册合订本被挪动过，背板灰尘留下清楚断痕。",
+        "clueIds": ["clue_library_dust_gap"]
+      },
+      {
+        "id": "library_old_bridge_volume",
+        "name": "旧桥报道合订本",
+        "description": "合订本后方有暗格，可藏下一本账册。",
+        "clueIds": ["clue_old_bridge_article"],
+        "requiredStageId": "afternoon"
+      }
+    ]
+  },
+  {
+    "id": "town_hall",
+    "name": "镇公所",
+    "description": "档案室位于镇公所后侧，失踪账本最后一次在这里被看见。",
+    "environmentDetails": ["档案柜旁留下黑咖啡杯印。", "备用钥匙登记簿被压在文件夹下。"],
+    "searchableObjects": [
+      {
+        "id": "archive_cabinet",
+        "name": "档案柜",
+        "description": "柜门边缘有新划痕，旁边留着杯印。",
+        "clueIds": ["clue_coffee_stain"]
+      },
+      {
+        "id": "spare_key_box",
+        "name": "备用钥匙盒",
+        "description": "登记簿显示镇长昨晚借出过档案室备用钥匙。",
+        "clueIds": ["clue_spare_key_log"]
+      },
+      {
+        "id": "archive_schedule",
+        "name": "档案室登记表",
+        "description": "登记时间显示镇长有进入档案室的窗口。",
+        "clueIds": ["clue_archive_schedule"]
+      },
+      {
+        "id": "wastebasket",
+        "name": "碎纸篓",
+        "description": "纸篓夹层里有半张被撕下的账页。",
+        "clueIds": ["clue_torn_ledger_page"],
+        "requiredStageId": "afternoon"
+      }
+    ]
+  }
+]

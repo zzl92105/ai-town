@@ -1,0 +1,29 @@
+# dependencies
+node_modules/
+
+# build outputs
+dist/
+src-tauri/target/
+*.dmg
+*.app
+
+# local environment
+.env
+.env.*
+!.env.example
+
+# editor / OS files
+.DS_Store
+.idea/
+.vscode/
+
+# logs
+*.log
+npm-debug.log*
+pnpm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# generated local backups
+src-tauri/icons/icon-screenshot-backup.png
+**/.png

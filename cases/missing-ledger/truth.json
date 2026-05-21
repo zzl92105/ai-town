@@ -1,0 +1,21 @@
+{
+  "culpritNpcId": "mayor_zhou",
+  "motiveKeywords": ["旧桥", "修缮款", "挪用", "记者", "曝光", "账本"],
+  "methodKeywords": ["备用钥匙", "档案室", "撕下账页", "图书馆", "旧报纸", "暗格"],
+  "hiddenObjectLocationId": "library",
+  "requiredEvidenceIds": [
+    "clue_spare_key_log",
+    "clue_torn_ledger_page",
+    "clue_library_dust_gap",
+    "clue_mayor_reporter_argument",
+    "clue_cafe_receipt_time"
+  ],
+  "canonicalTruth": "周启明为掩盖旧桥修缮款挪用证据，在傍晚前用备用钥匙进入镇公所档案室，取走账本并撕下涉及旧桥款项的一页，随后把账本藏在图书馆旧报纸架后的暗格中。",
+  "scoringRubric": [
+    { "id": "culprit", "label": "真凶判断", "weight": 25 },
+    { "id": "motive", "label": "动机判断", "weight": 20 },
+    { "id": "method", "label": "作案过程", "weight": 20 },
+    { "id": "location", "label": "账本位置", "weight": 15 },
+    { "id": "evidence", "label": "证据链完整度", "weight": 20 }
+  ]
+}

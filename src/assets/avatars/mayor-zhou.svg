@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Mayor Zhou portrait">
+  <defs>
+    <radialGradient id="bg" cx="42%" cy="28%" r="74%">
+      <stop stop-color="#70562b"/>
+      <stop offset=".58" stop-color="#23302b"/>
+      <stop offset="1" stop-color="#090f0e"/>
+    </radialGradient>
+    <linearGradient id="skin" x1="0" y1="110" x2="0" y2="355" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#d9aa76"/>
+      <stop offset="1" stop-color="#a06c4d"/>
+    </linearGradient>
+    <linearGradient id="suit" x1="136" y1="350" x2="372" y2="512" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#2f3b39"/>
+      <stop offset="1" stop-color="#101514"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="150%">
+      <feDropShadow dx="0" dy="16" stdDeviation="14" flood-color="#020303" flood-opacity=".55"/>
+    </filter>
+  </defs>
+  <rect width="512" height="512" rx="58" fill="url(#bg)"/>
+  <path d="M45 462c40-101 111-151 211-151s171 50 211 151v50H45z" fill="#0c1110" opacity=".55"/>
+  <g filter="url(#shadow)">
+    <path d="M118 512c16-111 62-170 138-170s122 59 138 170z" fill="url(#suit)"/>
+    <path d="M180 357l76 90 76-90 30 155H150z" fill="#1b2422"/>
+    <path d="M204 364h104l16 148H188z" fill="#efe3c6"/>
+    <path d="M216 398l40 48 40-48 24 114H192z" fill="#17201f"/>
+    <path d="M237 442h38l20 70h-78z" fill="#b44534"/>
+    <path d="M210 333h92v68c-29 24-61 24-92 0z" fill="#b9815c"/>
+    <path d="M143 193c0-86 43-135 116-135 70 0 112 51 112 136 0 102-47 168-116 168-67 0-112-67-112-169z" fill="url(#skin)"/>
+    <path d="M134 197c10-84 53-137 123-137 75 0 120 52 124 137-39-42-78-59-116-51-47 9-88 26-131 51z" fill="#55564f"/>
+    <path d="M139 184c16-73 56-111 120-114 68 7 104 43 115 110-44-34-86-45-125-33-40 12-76 24-110 37z" fill="#d9d4c4"/>
+    <path d="M143 202c31-35 65-51 102-48 41 2 82 18 123 48-8-61-43-100-106-112-68 8-108 45-119 112z" fill="#565952"/>
+    <path d="M179 253c25-14 50-14 75 0M278 253c25-14 50-14 75 0" stroke="#34281f" stroke-width="12" stroke-linecap="round"/>
+    <rect x="170" y="227" width="78" height="42" rx="15" fill="none" stroke="#202927" stroke-width="13"/>
+    <rect x="264" y="227" width="78" height="42" rx="15" fill="none" stroke="#202927" stroke-width="13"/>
+    <path d="M248 248h16" stroke="#202927" stroke-width="13" stroke-linecap="round"/>
+    <path d="M256 258l-19 52h39" fill="none" stroke="#92634c" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M213 326c31 21 61 21 91 0" stroke="#7a352c" stroke-width="12" stroke-linecap="round"/>
+    <path d="M118 512h276" stroke="#d7a84a" stroke-opacity=".23" stroke-width="4"/>
+    <circle cx="358" cy="410" r="18" fill="#d7a84a"/>
+    <path d="M349 410h18M358 401v18" stroke="#342716" stroke-width="4" stroke-linecap="round"/>
+  </g>
+  <path d="M32 32h448v448H32z" fill="none" stroke="#d7a84a" stroke-opacity=".28" stroke-width="4"/>
+</svg>
