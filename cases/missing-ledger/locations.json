@@ -16,6 +16,13 @@
         "name": "喷泉长椅",
         "description": "镇民常在这里闲谈，能看见镇公所门口的来往。",
         "clueIds": ["clue_town_gossip_red_herring"]
+      },
+      {
+        "id": "square_public_phone",
+        "name": "公共电话亭",
+        "description": "电话亭旁的便签纸压着一个被反复拨打的号码。",
+        "clueIds": ["clue_anonymous_call_note"],
+        "requiredStageId": "afternoon"
       }
     ]
   },
@@ -37,6 +44,13 @@
         "name": "外带杯架",
         "description": "杯底的凸纹和档案柜旁的咖啡印能够对应。",
         "clueIds": ["clue_cafe_loyalty_card"]
+      },
+      {
+        "id": "cafe_delivery_board",
+        "name": "外送路线板",
+        "description": "路线板上昨晚的外送顺序被擦掉一半，只剩图书馆和镇公所之间的箭头。",
+        "clueIds": ["clue_delivery_route_map"],
+        "requiredStageId": "afternoon"
       }
     ]
   },
@@ -51,6 +65,13 @@
         "name": "诊疗记录",
         "description": "记录显示记者昨晚手腕有新鲜划伤，形状接近档案柜金属边缘。",
         "clueIds": ["clue_reporter_wrist"]
+      },
+      {
+        "id": "clinic_waiting_room",
+        "name": "候诊区杂志架",
+        "description": "候诊区夹着镇公所内部简报，镇长最近因旧桥审计频繁失眠。",
+        "clueIds": ["clue_mayor_stress_record"],
+        "requiredStageId": "afternoon"
       }
     ]
   },
@@ -71,6 +92,20 @@
         "name": "旧桥报道合订本",
         "description": "合订本后方有暗格，可藏下一本账册。",
         "clueIds": ["clue_old_bridge_article"],
+        "requiredStageId": "afternoon"
+      },
+      {
+        "id": "library_reservation_slip",
+        "name": "借阅预约夹",
+        "description": "预约夹里有一张被撕去姓名的旧报纸区预约单。",
+        "clueIds": ["clue_library_call_slip"],
+        "requiredStageId": "afternoon"
+      },
+      {
+        "id": "library_donor_wall",
+        "name": "捐赠人名单墙",
+        "description": "名单墙显示旧桥工程公司给图书馆捐过一批书柜，容易让人怀疑林澈。",
+        "clueIds": ["clue_foundation_donation_list"],
         "requiredStageId": "afternoon"
       }
     ]
@@ -104,6 +139,20 @@
         "name": "碎纸篓",
         "description": "纸篓夹层里有半张被撕下的账页。",
         "clueIds": ["clue_torn_ledger_page"],
+        "requiredStageId": "afternoon"
+      },
+      {
+        "id": "finance_folder",
+        "name": "旧桥报销夹",
+        "description": "报销夹中几张发票复印件的收款方被同一支笔改过。",
+        "clueIds": ["clue_bridge_invoice_copy"],
+        "requiredStageId": "afternoon"
+      },
+      {
+        "id": "council_minutes",
+        "name": "镇务会议纪要",
+        "description": "纪要显示审计员下周会复查旧桥款项，账本失踪有明确时间压力。",
+        "clueIds": ["clue_council_meeting_minutes"],
         "requiredStageId": "afternoon"
       }
     ]

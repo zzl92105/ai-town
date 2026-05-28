@@ -1,0 +1,41 @@
+[
+  {
+    "id": "morning",
+    "name": "上午",
+    "description": "梳理面具失踪现场和熄灯时间线。",
+    "advanceHint": "发现至少 3 条线索后可进入下午。",
+    "npcLocations": {
+      "sponsor_han": "town_hall",
+      "artist_qiao": "square",
+      "captain_luo": "square",
+      "florist_yan": "cafe",
+      "archivist_meng": "library"
+    }
+  },
+  {
+    "id": "afternoon",
+    "name": "下午",
+    "description": "追问路线、钥匙和底片动机，开放更多可疑对象。",
+    "advanceHint": "发现至少 10 条线索并问询 4 名 NPC 后可进入傍晚。",
+    "npcLocations": {
+      "sponsor_han": "town_hall",
+      "artist_qiao": "library",
+      "captain_luo": "square",
+      "florist_yan": "cafe",
+      "archivist_meng": "library"
+    }
+  },
+  {
+    "id": "evening",
+    "name": "傍晚",
+    "description": "整理证据链，提交银羽面具失踪真相。",
+    "advanceHint": "提交结论后进入结局。",
+    "npcLocations": {
+      "sponsor_han": "town_hall",
+      "artist_qiao": "library",
+      "captain_luo": "square",
+      "florist_yan": "cafe",
+      "archivist_meng": "library"
+    }
+  }
+]

@@ -25,6 +25,61 @@ import {
 } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 import type { ElementType, ReactNode } from "react";
+import archivistMengAvatar from "../assets/ai/canal-masks/avatars/archivist-meng.png";
+import artistQiaoAvatar from "../assets/ai/canal-masks/avatars/artist-qiao.png";
+import captainLuoAvatar from "../assets/ai/canal-masks/avatars/captain-luo.png";
+import floristYanAvatar from "../assets/ai/canal-masks/avatars/florist-yan.png";
+import sponsorHanAvatar from "../assets/ai/canal-masks/avatars/sponsor-han.png";
+import canalClueImage from "../assets/ai/canal-masks/clues/canal-clues.png";
+import absintheReceiptImage from "../assets/ai/canal-masks/clues/absinthe-receipt.png";
+import artistBackdoorLogImage from "../assets/ai/canal-masks/clues/artist-backdoor-log.png";
+import artistPalmCutImage from "../assets/ai/canal-masks/clues/artist-palm-cut.png";
+import backstageStampImage from "../assets/ai/canal-masks/clues/backstage-stamp.png";
+import blackoutSwitchImage from "../assets/ai/canal-masks/clues/blackout-switch.png";
+import canalContractPressureImage from "../assets/ai/canal-masks/clues/canal-contract-pressure.png";
+import deductionArtistRouteImage from "../assets/ai/canal-masks/clues/deduction-artist-route.png";
+import deductionHiddenMaskArchiveImage from "../assets/ai/canal-masks/clues/deduction-hidden-mask-archive.png";
+import deductionMicrofilmMotiveImage from "../assets/ai/canal-masks/clues/deduction-microfilm-motive.png";
+import displaySlotDustImage from "../assets/ai/canal-masks/clues/display-slot-dust.png";
+import floatRouteImage from "../assets/ai/canal-masks/clues/float-route.png";
+import guestbookTimeImage from "../assets/ai/canal-masks/clues/guestbook-time.png";
+import keyTrayImprintImage from "../assets/ai/canal-masks/clues/key-tray-imprint.png";
+import maskStandPaintImage from "../assets/ai/canal-masks/clues/mask-stand-paint.png";
+import missingMicrofilmImage from "../assets/ai/canal-masks/clues/missing-microfilm.png";
+import sedativeRedHerringImage from "../assets/ai/canal-masks/clues/sedative-red-herring.png";
+import silverFeatherFragmentImage from "../assets/ai/canal-masks/clues/silver-feather-fragment.png";
+import canalCafeScene from "../assets/ai/canal-masks/locations/canal-cafe.png";
+import hydroArchiveScene from "../assets/ai/canal-masks/locations/hydro-archive.png";
+import aidStationScene from "../assets/ai/canal-masks/locations/aid-station.png";
+import paradeSquareScene from "../assets/ai/canal-masks/locations/parade-square.png";
+import sponsorHouseScene from "../assets/ai/canal-masks/locations/sponsor-house.png";
+import engineerLuAvatar from "../assets/ai/station-last-train/avatars/engineer-lu.png";
+import porterMaAvatar from "../assets/ai/station-last-train/avatars/porter-ma.png";
+import reporterChenAvatar from "../assets/ai/station-last-train/avatars/reporter-chen.png";
+import stationmasterDuAvatar from "../assets/ai/station-last-train/avatars/stationmaster-du.png";
+import vendorSongAvatar from "../assets/ai/station-last-train/avatars/vendor-song.png";
+import alteredTimetableImage from "../assets/ai/station-last-train/clues/altered-timetable.png";
+import broadcastTapeSwapImage from "../assets/ai/station-last-train/clues/broadcast-tape-swap.png";
+import cutRecorderWireImage from "../assets/ai/station-last-train/clues/cut-recorder-wire.png";
+import deductionSidingMotiveImage from "../assets/ai/station-last-train/clues/deduction-siding-motive.png";
+import deductionStationmasterWindowImage from "../assets/ai/station-last-train/clues/deduction-stationmaster-window.png";
+import deductionTapeHiddenLostFoundImage from "../assets/ai/station-last-train/clues/deduction-tape-hidden-lost-found.png";
+import halfTapeBoxImage from "../assets/ai/station-last-train/clues/half-tape-box.png";
+import lostFoundTimeEditImage from "../assets/ai/station-last-train/clues/lost-found-time-edit.png";
+import medicineRedHerringImage from "../assets/ai/station-last-train/clues/medicine-red-herring.png";
+import missingWireCutterImage from "../assets/ai/station-last-train/clues/missing-wire-cutter.png";
+import platformClockStoppedImage from "../assets/ai/station-last-train/clues/platform-clock-stopped.png";
+import porterArmScratchImage from "../assets/ai/station-last-train/clues/porter-arm-scratch.png";
+import reporterWetTicketImage from "../assets/ai/station-last-train/clues/reporter-wet-ticket.png";
+import sidingSwitchLogImage from "../assets/ai/station-last-train/clues/siding-switch-log.png";
+import staffGateRecordImage from "../assets/ai/station-last-train/clues/staff-gate-record.png";
+import stationmasterTeaReceiptImage from "../assets/ai/station-last-train/clues/stationmaster-tea-receipt.png";
+import vendorBackdoorSightingImage from "../assets/ai/station-last-train/clues/vendor-backdoor-sighting.png";
+import lostFoundScene from "../assets/ai/station-last-train/locations/lost-found.png";
+import platformScene from "../assets/ai/station-last-train/locations/platform.png";
+import railClinicScene from "../assets/ai/station-last-train/locations/rail-clinic.png";
+import signalTowerScene from "../assets/ai/station-last-train/locations/signal-tower.png";
+import teaStandScene from "../assets/ai/station-last-train/locations/tea-stand.png";
 import cafeShenAvatar from "../assets/ai/avatars/cafe-shen.png";
 import doctorBaiAvatar from "../assets/ai/avatars/doctor-bai.png";
 import librarianLinAvatar from "../assets/ai/avatars/librarian-lin.png";
@@ -46,7 +101,7 @@ import clinicScene from "../assets/ai/locations/clinic.png";
 import libraryScene from "../assets/ai/locations/library.png";
 import squareScene from "../assets/ai/locations/square.png";
 import townHallScene from "../assets/ai/locations/town-hall.png";
-import { missingLedgerCase } from "../data/casePackage";
+import { activeCasePackage as missingLedgerCase, getCasePackage } from "../data/casePackage";
 import { caseCatalog } from "../data/caseCatalog";
 import { buildNpcDisclosureContext } from "../domain/aiGuardrails";
 import { getAvailableContradictions } from "../domain/contradictionRules";
@@ -72,6 +127,16 @@ const npcAvatars: Record<string, string> = {
   librarian_lin: librarianLinAvatar,
   cafe_shen: cafeShenAvatar,
   doctor_bai: doctorBaiAvatar,
+  sponsor_han: sponsorHanAvatar,
+  artist_qiao: artistQiaoAvatar,
+  captain_luo: captainLuoAvatar,
+  florist_yan: floristYanAvatar,
+  archivist_meng: archivistMengAvatar,
+  stationmaster_du: stationmasterDuAvatar,
+  engineer_lu: engineerLuAvatar,
+  porter_ma: porterMaAvatar,
+  vendor_song: vendorSongAvatar,
+  reporter_chen: reporterChenAvatar,
 };
 
 const locationScenes: Record<string, string> = {
@@ -80,6 +145,22 @@ const locationScenes: Record<string, string> = {
   clinic: clinicScene,
   library: libraryScene,
   town_hall: townHallScene,
+};
+
+const canalLocationScenes: Record<string, string> = {
+  square: paradeSquareScene,
+  cafe: canalCafeScene,
+  clinic: aidStationScene,
+  library: hydroArchiveScene,
+  town_hall: sponsorHouseScene,
+};
+
+const stationLocationScenes: Record<string, string> = {
+  square: platformScene,
+  cafe: teaStandScene,
+  clinic: railClinicScene,
+  library: lostFoundScene,
+  town_hall: signalTowerScene,
 };
 
 const clueImages: Record<string, string> = {
@@ -97,12 +178,68 @@ const clueImages: Record<string, string> = {
   deduction_hidden_route_library: deductionNoteImage,
 };
 
+const canalClueImages: Record<string, string> = {
+  clue_blackout_switch: blackoutSwitchImage,
+  clue_float_route: floatRouteImage,
+  clue_absinthe_receipt: absintheReceiptImage,
+  clue_artist_palm_cut: artistPalmCutImage,
+  clue_missing_microfilm: missingMicrofilmImage,
+  clue_key_tray_imprint: keyTrayImprintImage,
+  clue_mask_stand_paint: maskStandPaintImage,
+  clue_artist_backdoor_log: artistBackdoorLogImage,
+  clue_canal_contract_pressure: canalContractPressureImage,
+  clue_silver_feather_fragment: silverFeatherFragmentImage,
+  clue_display_slot_dust: displaySlotDustImage,
+  clue_guestbook_time: guestbookTimeImage,
+  clue_backstage_stamp: backstageStampImage,
+  clue_sedative_red_herring: sedativeRedHerringImage,
+  deduction_artist_route: deductionArtistRouteImage,
+  deduction_hidden_mask_archive: deductionHiddenMaskArchiveImage,
+  deduction_microfilm_motive: deductionMicrofilmMotiveImage,
+};
+
+const stationClueImages: Record<string, string> = {
+  clue_platform_clock_stopped: platformClockStoppedImage,
+  clue_staff_gate_record: staffGateRecordImage,
+  clue_reporter_wet_ticket: reporterWetTicketImage,
+  clue_stationmaster_tea_receipt: stationmasterTeaReceiptImage,
+  clue_vendor_backdoor_sighting: vendorBackdoorSightingImage,
+  clue_porter_arm_scratch: porterArmScratchImage,
+  clue_medicine_red_herring: medicineRedHerringImage,
+  clue_half_tape_box: halfTapeBoxImage,
+  clue_broadcast_tape_swap: broadcastTapeSwapImage,
+  clue_lost_found_time_edit: lostFoundTimeEditImage,
+  clue_cut_recorder_wire: cutRecorderWireImage,
+  clue_siding_switch_log: sidingSwitchLogImage,
+  clue_altered_timetable: alteredTimetableImage,
+  clue_missing_wire_cutter: missingWireCutterImage,
+  deduction_stationmaster_window: deductionStationmasterWindowImage,
+  deduction_siding_motive: deductionSidingMotiveImage,
+  deduction_tape_hidden_lost_found: deductionTapeHiddenLostFoundImage,
+};
+
 function getNpcAvatar(npcId: string) {
   return npcAvatars[npcId] ?? mayorZhouAvatar;
 }
 
+function getLocationScene(locationId: string) {
+  if (missingLedgerCase.manifest.id === "station-last-train") {
+    return stationLocationScenes[locationId] ?? locationScenes[locationId] ?? townHallScene;
+  }
+  return missingLedgerCase.manifest.id === "canal-masks"
+    ? canalLocationScenes[locationId] ?? locationScenes[locationId] ?? townHallScene
+    : locationScenes[locationId] ?? townHallScene;
+}
+
 function getClueImage(clueId: string) {
+  if (missingLedgerCase.manifest.id === "station-last-train") return stationClueImages[clueId] ?? deductionNoteImage;
+  if (missingLedgerCase.manifest.id === "canal-masks") return canalClueImages[clueId] ?? canalClueImage;
   return clueImages[clueId] ?? deductionNoteImage;
+}
+
+function hiddenObjectLabel() {
+  if (missingLedgerCase.manifest.id === "station-last-train") return "半截录音";
+  return missingLedgerCase.manifest.id === "canal-masks" ? "银羽面具" : "账本";
 }
 
 const markLabels: Record<ClueMark, string> = {
@@ -113,14 +250,14 @@ const markLabels: Record<ClueMark, string> = {
 };
 
 const storyBackground = [
-  "旧桥修缮款的去向一直是镇上的禁忌。昨晚，镇公所准备封存年度账本时，负责整理档案的人发现账本不见了。",
-  "账本里可能记录了拨款异常、临时签批和被人刻意藏起的票据。镇长、记者、图书管理员、咖啡馆老板和医生都在关键时间段靠近过相关地点。",
-  "你扮演外来的调查员，需要在一天之内找出是谁拿走账本、为什么拿走、怎么避开登记，以及账本现在被藏在哪里。",
+  "每个案件包都有独立地点、嫌疑人、线索、话题和标准真相。",
+  "你扮演外来的调查员，需要在一天之内找出是谁拿走关键物品、为什么拿走、如何作案，以及物品现在藏在哪里。",
+  "调查流程保持一致：先搜查地点，再用线索追问 NPC，最后整理证据链提交推理。",
 ];
 
 const firstSteps = [
-  "先去“镇公所”调查档案室、登记表和工具箱。",
-  "再去“咖啡馆”查找小票、目击证词和时间线。",
+  "先调查当前案件的核心现场和可疑对象。",
+  "再走访能建立时间线的地点和人物。",
   "遇到嫌疑人就进入问询，拿线索追问矛盾说法。",
   "线索足够后到“推理”页提交真相。",
 ];
@@ -190,7 +327,7 @@ function CaseSelect() {
           <h1>{missingLedgerCase.caseFile.title}</h1>
           <p>{missingLedgerCase.caseFile.briefing}</p>
           <div className="hero-actions">
-            <button className="primary" onClick={startNewGame}>
+            <button className="primary" onClick={() => startNewGame()}>
               <Search size={18} /> 开始新调查
             </button>
             <button onClick={() => useGameStore.getState().setView("settings")}>
@@ -210,7 +347,7 @@ function CaseSelect() {
                 </div>
                 <p>{entry.briefing}</p>
                 <div className="tag-row">{entry.tags.map((tag) => <span key={tag}>{tag}</span>)}</div>
-                <button disabled={entry.status !== "playable"} onClick={startNewGame}>
+                <button disabled={entry.status !== "playable"} onClick={() => startNewGame(entry.id)}>
                   {entry.status === "playable" ? "开始此案" : "等待案件包"}
                 </button>
               </article>
@@ -249,8 +386,8 @@ function CaseSelect() {
             {saveSummaries.map((save) => (
               <article key={save.id}>
                 <div>
-                  <strong>{missingLedgerCase.caseFile.title}</strong>
-                  <span>{stageName(save.currentStageId)} · 线索 {save.discoveredClueCount}/{missingLedgerCase.clues.length} · 日志 {save.eventCount}</span>
+                  <strong>{getCasePackage(save.caseId).caseFile.title}</strong>
+                  <span>{stageName(save.currentStageId, save.caseId)} · 线索 {save.discoveredClueCount}/{getCasePackage(save.caseId).clues.length} · 日志 {save.eventCount}</span>
                   <small>更新于 {formatDateTime(save.updatedAt)}</small>
                 </div>
                 <button onClick={() => loadSave(save.id)}>继续调查</button>
@@ -266,9 +403,11 @@ function CaseSelect() {
 function DeskView() {
   return (
     <main className="workspace three-col">
+      <NewPlayerGuide />
       <Sidebar />
       <section className="main-stack">
         <CaseBrief />
+        <HowToPlayPanel />
         <LocationInvestigation />
         <ClueStrip />
       </section>
@@ -279,6 +418,64 @@ function DeskView() {
       </section>
       <LogPanel />
     </main>
+  );
+}
+
+function NewPlayerGuide() {
+  const discoveredClueIds = useGameStore((state) => state.discoveredClueIds);
+  const selectLocation = useGameStore((state) => state.selectLocation);
+  const [dismissed, setDismissed] = useState(() => localStorage.getItem("ai-town-new-player-guide") === "dismissed");
+  const visible = discoveredClueIds.length === 0 && !dismissed;
+
+  const closeGuide = () => {
+    localStorage.setItem("ai-town-new-player-guide", "dismissed");
+    setDismissed(true);
+  };
+
+  if (!visible) return null;
+
+  return (
+    <section className="guide-overlay" aria-label="新手引导">
+      <div className="guide-card">
+        <div className="guide-stamp">调查员手册</div>
+        <h2>先别急着猜凶手，按证据走。</h2>
+        <p>这不是开放聊天游戏。你的目标是搜查地点、拿到线索、用线索追问 NPC，最后把真凶、动机、过程和藏匿地点串成证据链。</p>
+        <div className="guide-steps">
+          <article>
+            <span>1</span>
+            <strong>搜查地点</strong>
+            <p>先在核心现场点“调查”，拿到最初几条线索。</p>
+          </article>
+          <article>
+            <span>2</span>
+            <strong>拿线索问人</strong>
+            <p>进入问询，把线索出示给相关 NPC，解锁更深话题。</p>
+          </article>
+          <article>
+            <span>3</span>
+            <strong>指出矛盾</strong>
+            <p>证据足够时，对质矛盾或组合推理。</p>
+          </article>
+          <article>
+            <span>4</span>
+            <strong>提交真相</strong>
+            <p>傍晚阶段整理证据链，再去“推理”提交结论。</p>
+          </article>
+        </div>
+        <div className="guide-actions">
+          <button
+            className="primary"
+            onClick={() => {
+              closeGuide();
+              selectLocation("town_hall");
+            }}
+          >
+            <Search size={17} /> 去核心现场搜查
+          </button>
+          <button onClick={closeGuide}>我知道了</button>
+        </div>
+      </div>
+    </section>
   );
 }
 
@@ -316,6 +513,7 @@ function Sidebar() {
         <p className={stageGate.ok ? "status-ok" : "muted"}>{stageGate.message}</p>
       </Panel>
       <CurrentTaskPanel />
+      <HintPanel />
       <Panel title="地点" icon={Map}>
         <div className="nav-list">
           {missingLedgerCase.locations.map((location) => {
@@ -380,6 +578,62 @@ function CurrentTaskPanel() {
   );
 }
 
+function HintPanel() {
+  const stageId = useGameStore((state) => state.stageId);
+  const currentLocationId = useGameStore((state) => state.currentLocationId);
+  const currentNpcId = useGameStore((state) => state.currentNpcId);
+  const discoveredClueIds = useGameStore((state) => state.discoveredClueIds);
+  const dialogue = useGameStore((state) => state.dialogue);
+  const confrontedTopicIds = useGameStore((state) => state.confrontedTopicIds);
+  const resolvedContradictionIds = useGameStore((state) => state.resolvedContradictionIds);
+  const setView = useGameStore((state) => state.setView);
+  const advanceStage = useGameStore((state) => state.advanceStage);
+  const selectNpc = useGameStore((state) => state.selectNpc);
+  const [level, setLevel] = useState<"nudge" | "clear" | "direct">("nudge");
+  const tasks = getCurrentTasks({
+    stageId,
+    currentLocationId,
+    currentNpcId,
+    discoveredClueIds,
+    dialogue,
+    confrontedTopicIds,
+    resolvedContradictionIds,
+  });
+  const task = tasks[0];
+  const stage = missingLedgerCase.stages.find((item) => item.id === stageId);
+  const remainingKeyClues = missingLedgerCase.truth.requiredEvidenceIds.filter((id) => !discoveredClueIds.includes(id));
+  const hintText = !task
+    ? "当前没有明确阻塞。可以整理证据链，或回看日志确认遗漏。"
+    : level === "nudge"
+      ? stage?.advanceHint ?? "先检查当前阶段目标。"
+      : level === "clear"
+        ? task.detail
+        : `${task.actionLabel}：${task.title}${remainingKeyClues.length > 0 ? `。还有 ${remainingKeyClues.length} 条关键证据未发现或未入链。` : "。关键证据已接近完整。"}`;
+
+  const runAction = () => {
+    if (!task) return;
+    if (task.id === "advance_stage") {
+      advanceStage();
+    } else if (task.targetNpcId) {
+      selectNpc(task.targetNpcId);
+    } else {
+      setView(task.view);
+    }
+  };
+
+  return (
+    <Panel title="提示" icon={Lightbulb}>
+      <div className="hint-controls">
+        <button className={level === "nudge" ? "active" : ""} onClick={() => setLevel("nudge")}>轻提示</button>
+        <button className={level === "clear" ? "active" : ""} onClick={() => setLevel("clear")}>明确</button>
+        <button className={level === "direct" ? "active" : ""} onClick={() => setLevel("direct")}>下一步</button>
+      </div>
+      <p className="hint-text">{hintText}</p>
+      {task && <button className="wide" onClick={runAction}>{task.actionLabel}</button>}
+    </Panel>
+  );
+}
+
 function CaseBrief() {
   const stageId = useGameStore((state) => state.stageId);
   const stage = missingLedgerCase.stages.find((item) => item.id === stageId)!;
@@ -390,12 +644,37 @@ function CaseBrief() {
         <p>你的核心任务不是收集所有物品，而是把“时间、动机、作案方式、藏匿地点”串成完整证据链。</p>
       </div>
       <div className="facts-row">
-        <span><FileText size={15} /> 关键物品：年度账本</span>
+        <span><FileText size={15} /> 关键物品：{hiddenObjectLabel()}</span>
         <span><ClipboardList size={15} /> 当前阶段：{stage.name}</span>
         <span><KeyRound size={15} /> {stage.advanceHint}</span>
       </div>
       <div className="next-actions">
-        {firstSteps.slice(0, 3).map((step) => <span key={step}>{step}</span>)}
+        {missingLedgerCase.caseFile.recommendedFlow.slice(0, 3).map((step) => <span key={step}>{step}</span>)}
+      </div>
+    </Panel>
+  );
+}
+
+function HowToPlayPanel() {
+  return (
+    <Panel title="玩法速查" icon={Lightbulb}>
+      <div className="quick-guide">
+        <article>
+          <strong>卡住时看左侧</strong>
+          <p>“当前任务”和“提示”会告诉你下一步该搜查、问询还是推进阶段。</p>
+        </article>
+        <article>
+          <strong>先调查再问人</strong>
+          <p>没有线索时，NPC 很难透露重点。先从当前位置的可疑对象开始。</p>
+        </article>
+        <article>
+          <strong>线索可以入链</strong>
+          <p>在证据墙点击“入链”，把最终推理要用的证据整理到证据链。</p>
+        </article>
+        <article>
+          <strong>傍晚才能结案</strong>
+          <p>上午和下午先收集证据、对质矛盾；阶段满足条件后再推进。</p>
+        </article>
       </div>
     </Panel>
   );
@@ -413,7 +692,7 @@ function LocationInvestigation() {
   return (
     <Panel title={`当前位置 · ${location.name}`} icon={locationIcons[location.id] ?? Map}>
       <div className="location-scene">
-        <img src={locationScenes[location.id]} alt={`${location.name}调查场景`} />
+        <img src={getLocationScene(location.id)} alt={`${location.name}调查场景`} />
         <div>
           <strong>{location.name}</strong>
           <span>{npcsHere.length > 0 ? `现场人物：${npcsHere.map((npc) => npc.name).join("、")}` : "现场暂无可问询人物"}</span>
@@ -428,7 +707,7 @@ function LocationInvestigation() {
           const locked = !isStageAvailable(stageId, object.requiredStageId);
           return (
             <article key={object.id} className={locked ? "locked" : ""}>
-              <img className="object-thumb" src={object.clueIds[0] ? getClueImage(object.clueIds[0]) : locationScenes[location.id]} alt={`${object.name}线索图`} />
+              <img className="object-thumb" src={object.clueIds[0] ? getClueImage(object.clueIds[0]) : getLocationScene(location.id)} alt={`${object.name}线索图`} />
               <div>
                 <strong>{object.name}</strong>
                 <p>{object.description}</p>
@@ -646,13 +925,52 @@ function DeductionNote() {
 
 function LogPanel() {
   const events = useGameStore((state) => state.events);
+  const [typeFilter, setTypeFilter] = useState<"all" | "clue" | "dialogue" | "contradiction" | "stage" | "note" | "final">("all");
+  const [query, setQuery] = useState("");
+  const [importantOnly, setImportantOnly] = useState(false);
+  const normalizedQuery = query.trim().toLowerCase();
+  const filteredEvents = events.filter((event) => {
+    const matchesType = typeFilter === "all" || event.type === typeFilter;
+    const matchesImportance = !importantOnly || event.importance >= 8;
+    const relatedNpcNames = event.npcIds.map((id) => missingLedgerCase.npcs.find((npc) => npc.id === id)?.name ?? id).join(" ");
+    const relatedClueTitles = event.clueIds.map((id) => missingLedgerCase.clues.find((clue) => clue.id === id)?.title ?? id).join(" ");
+    const searchable = `${event.summary} ${relatedNpcNames} ${relatedClueTitles}`.toLowerCase();
+    return matchesType && matchesImportance && (!normalizedQuery || searchable.includes(normalizedQuery));
+  });
   return (
     <section className="log-panel">
       <header><ClipboardList size={17} /> 调查日志</header>
+      <div className="log-tools">
+        <input value={query} placeholder="搜索日志、NPC 或线索" onChange={(event) => setQuery(event.target.value)} />
+        <select value={typeFilter} onChange={(event) => setTypeFilter(event.target.value as typeof typeFilter)}>
+          <option value="all">全部类型</option>
+          <option value="clue">线索</option>
+          <option value="dialogue">问询</option>
+          <option value="contradiction">矛盾</option>
+          <option value="stage">阶段</option>
+          <option value="note">推理</option>
+          <option value="final">结局</option>
+        </select>
+        <label>
+          <input type="checkbox" checked={importantOnly} onChange={(event) => setImportantOnly(event.target.checked)} />
+          只看关键
+        </label>
+      </div>
       <div>
-        {events.slice(0, 8).map((event) => (
-          <p key={event.id}><time>{new Date(event.createdAt).toLocaleTimeString("zh-CN", { hour: "2-digit", minute: "2-digit" })}</time>{event.summary}</p>
+        {filteredEvents.slice(0, 12).map((event) => (
+          <article key={event.id} className={event.importance >= 8 ? "important" : ""}>
+            <time>{new Date(event.createdAt).toLocaleTimeString("zh-CN", { hour: "2-digit", minute: "2-digit" })}</time>
+            <div>
+              <p>{event.summary}</p>
+              {(event.npcIds.length > 0 || event.clueIds.length > 0) && (
+                <small>
+                  {[...event.npcIds.map((id) => missingLedgerCase.npcs.find((npc) => npc.id === id)?.name ?? id), ...event.clueIds.map((id) => missingLedgerCase.clues.find((clue) => clue.id === id)?.title ?? id)].join(" · ")}
+                </small>
+              )}
+            </div>
+          </article>
         ))}
+        {filteredEvents.length === 0 && <p className="muted">没有匹配的调查记录。</p>}
       </div>
     </section>
   );
@@ -669,6 +987,8 @@ function InterrogationView() {
   const dialogue = useGameStore((state) => state.dialogue);
   const askTopic = useGameStore((state) => state.askTopic);
   const presentEvidenceToNpc = useGameStore((state) => state.presentEvidenceToNpc);
+  const resolvedContradictionIds = useGameStore((state) => state.resolvedContradictionIds);
+  const confrontContradiction = useGameStore((state) => state.confrontContradiction);
   const apiKeyConfigured = useGameStore((state) => state.apiKeyConfigured);
   const askFreeQuestion = useGameStore((state) => state.askFreeQuestion);
   const aiBusy = useGameStore((state) => state.aiBusy);
@@ -679,6 +999,8 @@ function InterrogationView() {
   const topics = missingLedgerCase.topics.filter((topic) => topic.npcId === currentNpcId);
   const visibleMessages = dialogue.filter((message) => message.npcId === currentNpcId);
   const availableClues = missingLedgerCase.clues.filter((clue) => discoveredClueIds.includes(clue.id));
+  const availableContradictions = getAvailableContradictions(discoveredClueIds, resolvedContradictionIds)
+    .filter((rule) => rule.npcIds.includes(currentNpcId));
   const disclosure = buildNpcDisclosureContext({
     casePackage: missingLedgerCase,
     npc,
@@ -767,6 +1089,18 @@ function InterrogationView() {
                 </button>
               );
             })}
+          </div>
+        </Panel>
+        <Panel title="可对质矛盾" icon={ShieldQuestion}>
+          <div className="confront-list">
+            {availableContradictions.length === 0 && <p className="muted">收集到能互相印证的证据后，可以在这里向当前 NPC 对质。</p>}
+            {availableContradictions.map((rule) => (
+              <button key={rule.id} onClick={() => confrontContradiction(rule.id)}>
+                <ShieldQuestion size={14} />
+                <span>{rule.title}</span>
+                <small>{rule.requiredClueIds.map((id) => missingLedgerCase.clues.find((clue) => clue.id === id)?.title ?? id).join("、")}</small>
+              </button>
+            ))}
           </div>
         </Panel>
         <Panel title="可出示证据" icon={Archive}>
@@ -966,10 +1300,10 @@ function DeductionView() {
   const endingReview = useGameStore((state) => state.endingReview);
   const setView = useGameStore((state) => state.setView);
   const [answer, setAnswer] = useState<FinalDeduction>({
-    culpritNpcId: "mayor_zhou",
+    culpritNpcId: missingLedgerCase.npcs[0]?.id ?? "",
     motive: "",
     method: "",
-    hiddenObjectLocationId: "library",
+    hiddenObjectLocationId: missingLedgerCase.truth.hiddenObjectLocationId,
     evidenceClueIds: [],
   });
   const discoveredClues = missingLedgerCase.clues.filter((clue) => discoveredClueIds.includes(clue.id));
@@ -1000,7 +1334,7 @@ function DeductionView() {
       <p>请基于已收集的线索完整提交真相。提交后系统会按结构化标准答案评分。</p>
       <p className={finalGate.ok ? "status-ok" : "inline-error"}>{finalGate.message}</p>
       <section className="deduction-form">
-        <Panel title="1. 谁拿走了账本" icon={ShieldQuestion}>
+        <Panel title={`1. 谁拿走了${hiddenObjectLabel()}`} icon={ShieldQuestion}>
           <div className="choice-grid">
             {missingLedgerCase.npcs.map((npc) => (
               <label key={npc.id} className={answer.culpritNpcId === npc.id ? "selected" : ""}>
@@ -1011,12 +1345,12 @@ function DeductionView() {
           </div>
         </Panel>
         <Panel title="2. 动机" icon={FileText}>
-          <textarea value={answer.motive} onChange={(event) => setAnswer({ ...answer, motive: event.target.value })} placeholder="例如：为掩盖旧桥修缮款挪用，担心记者曝光账本内容。" />
+          <textarea value={answer.motive} onChange={(event) => setAnswer({ ...answer, motive: event.target.value })} placeholder={`说明拿走${hiddenObjectLabel()}的目的、压力和受益关系。`} />
         </Panel>
         <Panel title="3. 作案过程" icon={KeyRound}>
-          <textarea value={answer.method} onChange={(event) => setAnswer({ ...answer, method: event.target.value })} placeholder="按时间说明进入档案室、取走账本、撕页和藏匿过程。" />
+          <textarea value={answer.method} onChange={(event) => setAnswer({ ...answer, method: event.target.value })} placeholder={`按时间说明接近现场、取走${hiddenObjectLabel()}和藏匿过程。`} />
         </Panel>
-        <Panel title="4. 账本现在在哪里" icon={Library}>
+        <Panel title={`4. ${hiddenObjectLabel()}现在在哪里`} icon={Library}>
           <select value={answer.hiddenObjectLocationId} onChange={(event) => setAnswer({ ...answer, hiddenObjectLocationId: event.target.value })}>
             {missingLedgerCase.locations.map((location) => <option key={location.id} value={location.id}>{location.name}</option>)}
           </select>
@@ -1048,7 +1382,7 @@ function DeductionView() {
             {lastFinalDeduction && (
               <>
                 <p>提交对象：{missingLedgerCase.npcs.find((npc) => npc.id === lastFinalDeduction.culpritNpcId)?.name ?? lastFinalDeduction.culpritNpcId}</p>
-                <p>账本位置：{missingLedgerCase.locations.find((location) => location.id === lastFinalDeduction.hiddenObjectLocationId)?.name ?? lastFinalDeduction.hiddenObjectLocationId}</p>
+                <p>{hiddenObjectLabel()}位置：{missingLedgerCase.locations.find((location) => location.id === lastFinalDeduction.hiddenObjectLocationId)?.name ?? lastFinalDeduction.hiddenObjectLocationId}</p>
                 <p>证据数量：{lastFinalDeduction.evidenceClueIds.length}</p>
               </>
             )}
@@ -1125,7 +1459,7 @@ function SettingsView() {
             <article key={save.id} className={save.id === activeSaveId ? "active-save" : ""}>
               <div>
                 <strong>{save.id === activeSaveId ? "当前存档" : "本机存档"}</strong>
-                <span>{stageName(save.currentStageId)} · 线索 {save.discoveredClueCount}/{missingLedgerCase.clues.length}</span>
+                <span>{stageName(save.currentStageId, save.caseId)} · 线索 {save.discoveredClueCount}/{getCasePackage(save.caseId).clues.length}</span>
                 <small>{formatDateTime(save.updatedAt)}</small>
               </div>
               <div className="save-actions">
@@ -1146,8 +1480,8 @@ function SettingsView() {
   );
 }
 
-function stageName(stageId: string) {
-  return missingLedgerCase.stages.find((stage) => stage.id === stageId)?.name ?? stageId;
+function stageName(stageId: string, caseId?: string) {
+  return getCasePackage(caseId ?? missingLedgerCase.manifest.id).stages.find((stage) => stage.id === stageId)?.name ?? stageId;
 }
 
 function formatDateTime(value: string) {

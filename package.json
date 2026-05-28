@@ -11,7 +11,11 @@
     "assets:hd": "bash scripts/generate-hd-assets.sh",
     "preview": "vite preview --host 127.0.0.1",
     "test": "vitest run",
-    "tauri": "tauri"
+    "tauri": "tauri",
+    "ios:init": "tauri ios init --ci",
+    "ios:dev": "tauri ios dev",
+    "ios:run": "tauri ios run",
+    "ios:build": "tauri ios build"
   },
   "dependencies": {
     "@tauri-apps/api": "^2.2.0",

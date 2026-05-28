@@ -1,0 +1,16 @@
+{
+  "id": "station-last-train",
+  "title": "末班车站台",
+  "version": "0.1.0",
+  "author": "AI 小镇",
+  "minAppVersion": "0.1.0",
+  "entry": {
+    "caseFile": "case.json",
+    "locations": "locations.json",
+    "npcs": "npcs.json",
+    "clues": "clues.json",
+    "topics": "topics.json",
+    "stages": "stages.json",
+    "truth": "truth.json"
+  }
+}

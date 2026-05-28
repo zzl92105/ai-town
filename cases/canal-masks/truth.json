@@ -1,0 +1,28 @@
+{
+  "culpritNpcId": "artist_qiao",
+  "motiveKeywords": ["底片", "微型底片", "运河", "东岸", "补偿", "韩砚舟", "保护", "证据", "暗箱"],
+  "methodKeywords": ["熄灯", "花车", "后门", "钥匙", "暗扣", "面具", "展馆", "检修槽"],
+  "hiddenObjectLocationId": "library",
+  "requiredEvidenceIds": [
+    "clue_blackout_switch",
+    "clue_float_route",
+    "clue_artist_palm_cut",
+    "clue_missing_microfilm",
+    "clue_key_tray_imprint",
+    "clue_mask_stand_paint",
+    "clue_artist_backdoor_log",
+    "clue_canal_contract_pressure",
+    "clue_display_slot_dust",
+    "deduction_artist_route",
+    "deduction_hidden_mask_archive",
+    "deduction_microfilm_motive"
+  ],
+  "canonicalTruth": "乔微发现银羽面具内藏着能证明运河东岸仓库补偿被压低的微型底片。她在熄灯仪式中利用花车短暂停靠赞助人宅邸后门的窗口，短暂取走保险箱钥匙并打开面具暗扣，带走银羽面具和底片，再借花车材料与展馆侧门把面具藏进水文档案展馆展柜检修槽，目的是阻止韩砚舟拿到底片并压下东岸住户的补偿证据。",
+  "scoringRubric": [
+    { "id": "culprit", "label": "真凶判断", "weight": 25 },
+    { "id": "motive", "label": "动机判断", "weight": 20 },
+    { "id": "method", "label": "作案过程", "weight": 20 },
+    { "id": "location", "label": "面具位置", "weight": 15 },
+    { "id": "evidence", "label": "证据链完整度", "weight": 20 }
+  ]
+}

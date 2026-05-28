@@ -1,0 +1,145 @@
+[
+  {
+    "id": "sponsor_han",
+    "name": "韩砚舟",
+    "role": "巡游赞助人",
+    "personality": ["体面", "强势", "擅长交易"],
+    "locationId": "town_hall",
+    "initialStageId": "morning",
+    "publicBio": "运河改造项目投资人，也是银羽面具的所有者。",
+    "alibi": "声称熄灯时一直在贵宾席接受致辞。",
+    "timelineClaims": ["21:10 后没有离开贵宾席。", "保险箱钥匙一直在书房钥匙盘。", "面具只是普通收藏品。"],
+    "knownFacts": ["银羽面具由他保管。", "面具夜巡游结束后面具和钥匙同时失踪。"],
+    "hiddenFacts": ["面具内藏有运河改造暗箱交易的微型底片。", "他试图买下底片并压住东岸仓库补偿问题。"],
+    "lieRules": ["初期淡化面具价值。", "看到合同夹后承认底片与运河项目有关。"],
+    "trustScore": 32,
+    "relationships": {
+      "artist_qiao": { "label": "雇佣", "description": "委托乔微修复银羽面具。"},
+      "archivist_meng": { "label": "交易", "description": "曾向孟知远打听旧底片。"}
+    },
+    "dialogueStyle": {
+      "voice": "礼貌但压迫，常把问题包装成商业误会。",
+      "tells": ["提到底片会停顿", "强调赞助和体面"],
+      "pressureResponse": "先否认，再承认面具有纪念价值，避免提暗箱交易。"
+    },
+    "disclosureRules": {
+      "morning": [],
+      "afternoon": ["hidden:1"],
+      "evening": ["hidden:0", "hidden:1"]
+    }
+  },
+  {
+    "id": "artist_qiao",
+    "name": "乔微",
+    "role": "面具修复师",
+    "personality": ["敏感", "果断", "保护弱者"],
+    "locationId": "square",
+    "initialStageId": "morning",
+    "publicBio": "负责修复银羽面具，并设计本届巡游花车。",
+    "alibi": "声称熄灯时在花车旁检查固定架。",
+    "timelineClaims": ["她没有进过宅邸书房。", "手掌伤是搬花车时刮伤。", "不知道微型底片内容。"],
+    "knownFacts": ["面具可以打开内层暗扣。", "韩砚舟一直催她交还修复后的面具。"],
+    "hiddenFacts": ["她在熄灯时用复制钥匙取走面具。", "她把面具藏进水文档案展馆检修槽。", "她想把底片交给被拆迁住户，阻止补偿被压低。"],
+    "lieRules": ["初期否认进入宅邸。", "被后门登记和手伤追问后承认接触钥匙。", "只有证据链完整时才承认藏匿面具。"],
+    "trustScore": 48,
+    "relationships": {
+      "sponsor_han": { "label": "冲突", "description": "不满韩砚舟利用面具拿到底片。"},
+      "florist_yan": { "label": "同伴", "description": "严棠帮她布置花车。"}
+    },
+    "dialogueStyle": {
+      "voice": "短句、克制，先谈工艺再谈人。",
+      "tells": ["避开后门时间", "提到住户时语气软化"],
+      "pressureResponse": "会承认部分行动，但坚持自己不是为了私利。"
+    },
+    "disclosureRules": {
+      "morning": [],
+      "afternoon": ["hidden:0"],
+      "evening": ["hidden:0", "hidden:1", "hidden:2"]
+    }
+  },
+  {
+    "id": "captain_luo",
+    "name": "罗岑",
+    "role": "巡游队长",
+    "personality": ["守规矩", "急躁", "重视名声"],
+    "locationId": "square",
+    "initialStageId": "morning",
+    "publicBio": "负责花车路线和熄灯仪式秩序。",
+    "alibi": "熄灯时在广场指挥队伍重新点灯。",
+    "timelineClaims": ["熄灯是线路老化。", "银羽花车没有离开路线。", "没有人能从后台进宅邸。"],
+    "knownFacts": ["银羽花车在宅邸后门附近停过。", "主灯架可以手动断电。"],
+    "hiddenFacts": ["他为了不承担安保责任，隐瞒了花车短暂停靠。"],
+    "lieRules": ["不会编造凶手，但会把停靠说成正常调度。"],
+    "trustScore": 55,
+    "relationships": {
+      "artist_qiao": { "label": "合作", "description": "依赖乔微维护花车机关。"}
+    },
+    "dialogueStyle": {
+      "voice": "像报流程，紧张时会重复时间点。",
+      "tells": ["提到停靠会强调秩序", "不愿承认安保漏洞"],
+      "pressureResponse": "看到路线牌后承认花车确实停靠过。"
+    },
+    "disclosureRules": {
+      "morning": [],
+      "afternoon": ["hidden:0"],
+      "evening": ["hidden:0"]
+    }
+  },
+  {
+    "id": "florist_yan",
+    "name": "严棠",
+    "role": "花店老板",
+    "personality": ["热心", "会观察", "怕牵连"],
+    "locationId": "cafe",
+    "initialStageId": "morning",
+    "publicBio": "负责花车装饰，熟悉后台动线和固定胶材。",
+    "alibi": "声称熄灯时在咖啡棚等补给。",
+    "timelineClaims": ["乔微一直在花车旁。", "银色羽片可能是装饰掉落。"],
+    "knownFacts": ["乔微借过花店固定胶。", "银羽花车靠近过展馆侧门。"],
+    "hiddenFacts": ["她看见乔微把包裹塞进展馆侧门，却没有声张。"],
+    "lieRules": ["初期会保护乔微。", "看到银羽碎片后承认固定胶来自花店。"],
+    "trustScore": 66,
+    "relationships": {
+      "artist_qiao": { "label": "保护", "description": "知道乔微关心东岸住户。"}
+    },
+    "dialogueStyle": {
+      "voice": "温和、绕弯，喜欢先讲现场杂事。",
+      "tells": ["替乔微解释", "不主动提展馆侧门"],
+      "pressureResponse": "证据明确时会说出她看到的包裹。"
+    },
+    "disclosureRules": {
+      "morning": [],
+      "afternoon": ["hidden:0"],
+      "evening": ["hidden:0"]
+    }
+  },
+  {
+    "id": "archivist_meng",
+    "name": "孟知远",
+    "role": "水文档案员",
+    "personality": ["谨慎", "固执", "记忆力强"],
+    "locationId": "library",
+    "initialStageId": "morning",
+    "publicBio": "管理水文档案展馆，知道旧底片和运河改造资料的来历。",
+    "alibi": "声称熄灯时在展馆前厅接待游客。",
+    "timelineClaims": ["没有打开旧胶片柜。", "没有看见乔微进入展馆。"],
+    "knownFacts": ["旧胶片柜存过东岸仓库拆迁底片。", "韩砚舟曾多次询问底片。"],
+    "hiddenFacts": ["他知道乔微在找底片，但不知道她会取走面具。", "他改过留言册时间，想避开韩砚舟追责。"],
+    "lieRules": ["初期否认留言册时间被改。", "被胶片柜证据追问后承认底片存在。"],
+    "trustScore": 60,
+    "relationships": {
+      "sponsor_han": { "label": "忌惮", "description": "担心赞助人追究档案管理责任。"},
+      "artist_qiao": { "label": "同情", "description": "理解乔微想保护东岸住户。"}
+    },
+    "dialogueStyle": {
+      "voice": "慢而精确，常用档案编号说话。",
+      "tells": ["提到留言册会翻页", "回避谁借过底片"],
+      "pressureResponse": "会承认档案问题，但不直接替乔微定性。"
+    },
+    "disclosureRules": {
+      "morning": [],
+      "afternoon": ["hidden:0"],
+      "evening": ["hidden:0", "hidden:1"]
+    }
+  }
+]

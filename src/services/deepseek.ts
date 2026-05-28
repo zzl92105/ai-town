@@ -1,4 +1,4 @@
-import { missingLedgerCase } from "../data/casePackage";
+import { activeCasePackage } from "../data/casePackage";
 import { buildNpcDisclosureContext, sanitizeNpcReply } from "../domain/aiGuardrails";
 import type { Clue, DialogueMessage, InvestigationEvent, Npc, StageId, StructuredNpcReply } from "../domain/types";
 
@@ -34,7 +34,7 @@ const fallbackReply = (npc: Npc, playerMessage: string): StructuredNpcReply => (
 
 export function buildNpcPrompt(request: NpcReplyRequest) {
   const disclosure = buildNpcDisclosureContext({
-    casePackage: missingLedgerCase,
+    casePackage: activeCasePackage,
     npc: request.npc,
     stageId: request.stageId,
     discoveredClueIds: request.discoveredClues.map((clue) => clue.id),
@@ -77,8 +77,8 @@ export function buildNpcPrompt(request: NpcReplyRequest) {
 
   const userPrompt = JSON.stringify(
     {
-      caseId: missingLedgerCase.manifest.id,
-      caseTitle: missingLedgerCase.caseFile.title,
+      caseId: activeCasePackage.manifest.id,
+      caseTitle: activeCasePackage.caseFile.title,
       stageId: request.stageId,
       npc: {
         id: request.npc.id,
@@ -125,7 +125,7 @@ export function parseConstrainedNpcReply(
   request: NpcReplyRequest,
 ): StructuredNpcReply {
   const disclosure = buildNpcDisclosureContext({
-    casePackage: missingLedgerCase,
+    casePackage: activeCasePackage,
     npc: request.npc,
     stageId: request.stageId,
     discoveredClueIds: request.discoveredClues.map((clue) => clue.id),

@@ -1,0 +1,30 @@
+{
+  "culpritNpcId": "stationmaster_du",
+  "motiveKeywords": ["侧线", "货运", "违规", "调度", "稽查", "录音", "季闻", "隐瞒"],
+  "methodKeywords": ["员工卡", "后勤通道", "剪断", "录音线", "道岔", "时间表", "失物处", "广播带"],
+  "hiddenObjectLocationId": "library",
+  "requiredEvidenceIds": [
+    "clue_platform_clock_stopped",
+    "clue_staff_gate_record",
+    "clue_stationmaster_tea_receipt",
+    "clue_vendor_backdoor_sighting",
+    "clue_half_tape_box",
+    "clue_broadcast_tape_swap",
+    "clue_lost_found_time_edit",
+    "clue_cut_recorder_wire",
+    "clue_siding_switch_log",
+    "clue_altered_timetable",
+    "clue_missing_wire_cutter",
+    "deduction_stationmaster_window",
+    "deduction_siding_motive",
+    "deduction_tape_hidden_lost_found"
+  ],
+  "canonicalTruth": "杜衡为隐瞒自己违规放行旧货运车并改动侧线调度的事实，在季闻准备把半截录音交给记者前，用员工卡离开站长室进入后勤通道，剪断信号楼录音线并带走季闻。他随后改动站台时间参照和调度表，利用侧线延误制造混乱，又把半截录音调包进候车室失物处的广播备用带中，试图在铁路稽查前抹掉证据。",
+  "scoringRubric": [
+    { "id": "culprit", "label": "真凶判断", "weight": 25 },
+    { "id": "motive", "label": "动机判断", "weight": 20 },
+    { "id": "method", "label": "作案过程", "weight": 20 },
+    { "id": "location", "label": "录音位置", "weight": 15 },
+    { "id": "evidence", "label": "证据链完整度", "weight": 20 }
+  ]
+}

@@ -118,5 +118,77 @@
     "revealCondition": "always",
     "attitudeDelta": 2,
     "response": "许闻昨晚来处理过手腕划伤。伤口形状像被档案柜一类的金属边缘划到，但这只说明他接触过柜子。"
+  },
+  {
+    "id": "topic_reporter_anonymous_call",
+    "title": "匿名电话",
+    "npcId": "reporter_xu",
+    "requiredClueIds": ["clue_anonymous_call_note"],
+    "stageId": "afternoon",
+    "revealsClueIds": [],
+    "promptHint": "出示公共电话便签，追问记者是谁提醒他查账。",
+    "revealCondition": "clue",
+    "attitudeDelta": 4,
+    "response": "电话里的人压低了声音，只说旧桥账本今晚会被动手脚。我赶去档案室时，账本还在，但气氛已经不对。"
+  },
+  {
+    "id": "topic_mayor_invoice",
+    "title": "空壳维修商发票",
+    "npcId": "mayor_zhou",
+    "requiredClueIds": ["clue_bridge_invoice_copy", "clue_council_meeting_minutes"],
+    "stageId": "evening",
+    "revealsClueIds": [],
+    "promptHint": "用发票复印件和审计纪要追问旧桥款项。",
+    "revealCondition": "clue",
+    "attitudeDelta": -16,
+    "response": "那些发票只是旧工程遗留问题。审计当然会查，但你不能把所有签批都说成挪用。"
+  },
+  {
+    "id": "topic_librarian_reservation",
+    "title": "旧报纸区预约单",
+    "npcId": "librarian_lin",
+    "requiredClueIds": ["clue_library_call_slip"],
+    "stageId": "afternoon",
+    "revealsClueIds": [],
+    "promptHint": "用预约单追问是谁提前预约旧报纸区。",
+    "revealCondition": "clue",
+    "attitudeDelta": -4,
+    "response": "预约单的名字被我擦掉了。那是周镇长，他说只是想确认旧桥报道有没有被记者借走。"
+  },
+  {
+    "id": "topic_librarian_donation",
+    "title": "旧桥公司捐赠",
+    "npcId": "librarian_lin",
+    "requiredClueIds": ["clue_foundation_donation_list"],
+    "stageId": "afternoon",
+    "revealsClueIds": [],
+    "promptHint": "询问图书馆为何收过旧桥工程公司的捐赠。",
+    "revealCondition": "clue",
+    "attitudeDelta": -1,
+    "response": "那批书柜是镇公所统一安排的公益捐赠，我没有权力挑捐赠方。它让我看起来可疑，但和账本失踪无关。"
+  },
+  {
+    "id": "topic_cafe_delivery_route",
+    "title": "外送路线板",
+    "npcId": "cafe_shen",
+    "requiredClueIds": ["clue_delivery_route_map"],
+    "stageId": "afternoon",
+    "revealsClueIds": [],
+    "promptHint": "追问沈岚为什么外送路线会把视线引向广场。",
+    "revealCondition": "clue",
+    "attitudeDelta": -3,
+    "response": "我承认路线板会让人以为记者最后经过广场。但我只是怕卷进镇公所的事，才没主动说镇长那杯咖啡的时间。"
+  },
+  {
+    "id": "topic_doctor_mayor_stress",
+    "title": "镇长失眠",
+    "npcId": "doctor_bai",
+    "requiredClueIds": ["clue_mayor_stress_record"],
+    "stageId": "afternoon",
+    "revealsClueIds": [],
+    "promptHint": "询问医生镇长为何因审计焦虑失眠。",
+    "revealCondition": "clue",
+    "attitudeDelta": 1,
+    "response": "周启明最近确实紧张，反复问镇务审计会查到什么程度。医学记录不能定罪，但能说明压力来源。"
   }
 ]

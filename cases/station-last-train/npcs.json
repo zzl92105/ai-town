@@ -1,0 +1,143 @@
+[
+  {
+    "id": "stationmaster_du",
+    "name": "杜衡",
+    "role": "车站站长",
+    "personality": ["守旧", "控制欲强", "重视名声"],
+    "locationId": "town_hall",
+    "initialStageId": "morning",
+    "publicBio": "管理小镇车站二十年，熟悉调度、广播和失物处钥匙。",
+    "alibi": "声称末班车前一直在站长室核对报表。",
+    "timelineClaims": ["22:40 后没有离开办公室。", "没有碰过广播录音线。", "失物处登记是正常补录。"],
+    "knownFacts": ["季闻在信号楼值夜班。", "半截录音可能涉及货运侧线异常。"],
+    "hiddenFacts": ["他违规放行旧货运列车造成侧线事故隐患。", "他带走季闻并藏起录音，防止铁路稽查发现调度造假。", "录音藏在候车室失物处广播磁带架。"],
+    "lieRules": ["初期否认离开站长室。", "看到茶摊小票后承认去过站台附近。", "除非证据链完整，否则不承认藏匿录音。"],
+    "trustScore": 30,
+    "relationships": {
+      "engineer_lu": { "label": "施压", "description": "要求陆栖按旧货运时刻发车。"},
+      "reporter_chen": { "label": "敌对", "description": "担心记者公开铁路稽查消息。"}
+    },
+    "dialogueStyle": {
+      "voice": "克制、官样，喜欢把问题归为流程误差。",
+      "tells": ["回避具体分钟", "提到稽查会压低声音"],
+      "pressureResponse": "先承认最小行动，再强调车站声誉。"
+    },
+    "disclosureRules": {
+      "morning": [],
+      "afternoon": ["hidden:0"],
+      "evening": ["hidden:0", "hidden:1", "hidden:2"]
+    }
+  },
+  {
+    "id": "engineer_lu",
+    "name": "陆栖",
+    "role": "末班车司机",
+    "personality": ["谨慎", "疲惫", "讲时间"],
+    "locationId": "square",
+    "initialStageId": "morning",
+    "publicBio": "昨夜驾驶末班列车进站，称自己按信号等待。",
+    "alibi": "声称一直在驾驶室等待进站信号。",
+    "timelineClaims": ["22:56 前没有收到进站许可。", "侧线灯短暂亮过。", "季闻的声音在广播里断断续续。"],
+    "knownFacts": ["侧线切换会造成主线列车延迟。", "杜衡最近要求他配合旧货运车通行。"],
+    "hiddenFacts": ["他知道杜衡改过调度窗口，但害怕承担连带责任。"],
+    "lieRules": ["初期只说信号异常。", "看到侧线道岔记录后承认杜衡施压。"],
+    "trustScore": 56,
+    "relationships": {
+      "stationmaster_du": { "label": "上下级", "description": "受站长调度命令约束。"}
+    },
+    "dialogueStyle": {
+      "voice": "短句、精确，喜欢说分钟和灯色。",
+      "tells": ["提到侧线会停顿", "反复说自己按信号行车"],
+      "pressureResponse": "有记录支撑时会交代站长的口头命令。"
+    },
+    "disclosureRules": {
+      "morning": [],
+      "afternoon": ["hidden:0"],
+      "evening": ["hidden:0"]
+    }
+  },
+  {
+    "id": "porter_ma",
+    "name": "马峻",
+    "role": "货运搬运工",
+    "personality": ["粗直", "护短", "怕丢工作"],
+    "locationId": "clinic",
+    "initialStageId": "morning",
+    "publicBio": "负责夜间货运侧线装卸，昨晚手臂受伤。",
+    "alibi": "声称自己只在货棚搬箱，没有进过信号楼。",
+    "timelineClaims": ["22:50 后在医务室。", "手臂伤是搬箱擦到。", "不知道季闻去了哪里。"],
+    "knownFacts": ["旧货运车昨晚确实提前靠过侧线。", "有人让他把一只工具箱送回站长室。"],
+    "hiddenFacts": ["他看见杜衡从信号楼带出一个被制服外套盖住的人影。"],
+    "lieRules": ["初期隐瞒人影。", "看到蓝漆伤口和侧线记录后承认看到异常。"],
+    "trustScore": 50,
+    "relationships": {
+      "stationmaster_du": { "label": "忌惮", "description": "担心站长让他丢掉夜班工作。"}
+    },
+    "dialogueStyle": {
+      "voice": "直白、急躁，常把话题推回装卸活。",
+      "tells": ["提到制服外套会避开视线", "担心工作时语速变快"],
+      "pressureResponse": "证据足够时会承认看到杜衡带人离开。"
+    },
+    "disclosureRules": {
+      "morning": [],
+      "afternoon": ["hidden:0"],
+      "evening": ["hidden:0"]
+    }
+  },
+  {
+    "id": "vendor_song",
+    "name": "宋梨",
+    "role": "站前茶摊老板",
+    "personality": ["细心", "圆滑", "善记账"],
+    "locationId": "cafe",
+    "initialStageId": "morning",
+    "publicBio": "茶摊开在站台入口旁，熟悉夜班人员习惯。",
+    "alibi": "昨晚一直在茶摊收摊。",
+    "timelineClaims": ["杜衡 22:47 买过热茶。", "有人从后勤门带走包裹。"],
+    "knownFacts": ["杜衡不常亲自来茶摊。", "后勤门能直通失物处。"],
+    "hiddenFacts": ["她看见杜衡把报纸包裹交给失物处值班柜。"],
+    "lieRules": ["不会撒谎，但初期不愿点名杜衡。"],
+    "trustScore": 68,
+    "relationships": {
+      "stationmaster_du": { "label": "生意依赖", "description": "茶摊需要车站许可。"}
+    },
+    "dialogueStyle": {
+      "voice": "温和、观察细，先说账再说人。",
+      "tells": ["不愿直接说站长名字", "会强调小票不会骗人"],
+      "pressureResponse": "看到小票和后门视角证据后会点名杜衡。"
+    },
+    "disclosureRules": {
+      "morning": [],
+      "afternoon": ["hidden:0"],
+      "evening": ["hidden:0"]
+    }
+  },
+  {
+    "id": "reporter_chen",
+    "name": "陈燃",
+    "role": "铁路记者",
+    "personality": ["敏锐", "不耐烦", "追求证据"],
+    "locationId": "library",
+    "initialStageId": "morning",
+    "publicBio": "追查旧货运线违规运行的记者，昨晚在车站等季闻交录音。",
+    "alibi": "声称自己没等到季闻，只在候车室留到末班车前。",
+    "timelineClaims": ["季闻约他 23:05 后交录音。", "他没有进信号楼。", "湿车票是茶水泼到。"],
+    "knownFacts": ["季闻掌握半截录音。", "录音内容可能指向杜衡改调度。"],
+    "hiddenFacts": ["他确实翻过失物处，但没有找到录音。"],
+    "lieRules": ["初期隐瞒翻失物处。", "被湿车票和登记本追问后承认只是在找季闻留下的东西。"],
+    "trustScore": 46,
+    "relationships": {
+      "stationmaster_du": { "label": "冲突", "description": "正在调查杜衡管理下的货运异常。"}
+    },
+    "dialogueStyle": {
+      "voice": "像写调查稿，句子短，常反问。",
+      "tells": ["提到失物处会加快语速", "不愿透露线人"],
+      "pressureResponse": "如果有失物处证据，会承认翻找但否认带走录音。"
+    },
+    "disclosureRules": {
+      "morning": [],
+      "afternoon": ["hidden:0"],
+      "evening": ["hidden:0"]
+    }
+  }
+]

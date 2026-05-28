@@ -8,9 +8,14 @@
     "clue_torn_ledger_page",
     "clue_library_dust_gap",
     "clue_mayor_reporter_argument",
-    "clue_cafe_receipt_time"
+    "clue_cafe_receipt_time",
+    "clue_bridge_invoice_copy",
+    "clue_council_meeting_minutes",
+    "clue_library_call_slip",
+    "deduction_motive_financial_chain",
+    "deduction_hidden_route_library"
   ],
-  "canonicalTruth": "周启明为掩盖旧桥修缮款挪用证据，在傍晚前用备用钥匙进入镇公所档案室，取走账本并撕下涉及旧桥款项的一页，随后把账本藏在图书馆旧报纸架后的暗格中。",
+  "canonicalTruth": "周启明为掩盖旧桥修缮款挪用证据，在审计复查前用匿名电话把记者引向档案室制造嫌疑，又在傍晚前用备用钥匙进入镇公所档案室，取走账本并撕下涉及旧桥款项的一页，随后借旧报纸区预约把账本藏在图书馆旧报纸架后的暗格中。",
   "scoringRubric": [
     { "id": "culprit", "label": "真凶判断", "weight": 25 },
     { "id": "motive", "label": "动机判断", "weight": 20 },

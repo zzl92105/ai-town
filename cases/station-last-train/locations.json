@@ -1,0 +1,132 @@
+[
+  {
+    "id": "square",
+    "name": "末班站台",
+    "description": "小镇车站的主站台，末班列车昨夜在这里延迟进站。电子钟、检票口和长椅都留下了不同时间的痕迹。",
+    "environmentDetails": ["电子钟停在 22:58。", "站台广播线被临时接过外置录音机。"],
+    "searchableObjects": [
+      {
+        "id": "platform_clock",
+        "name": "停摆电子钟",
+        "description": "电子钟背板被打开过，校时线被人为拔掉。",
+        "clueIds": ["clue_platform_clock_stopped"]
+      },
+      {
+        "id": "ticket_gate",
+        "name": "检票闸机",
+        "description": "闸机记录显示有人在列车进站前用员工卡从站台返回后勤通道。",
+        "clueIds": ["clue_staff_gate_record"]
+      },
+      {
+        "id": "bench_lost_ticket",
+        "name": "长椅遗落车票",
+        "description": "车票属于记者陈燃，时间被咖啡浸湿，容易让人怀疑他等过末班车。",
+        "clueIds": ["clue_reporter_wet_ticket"],
+        "requiredStageId": "afternoon"
+      }
+    ]
+  },
+  {
+    "id": "cafe",
+    "name": "站前茶摊",
+    "description": "站前茶摊夜里仍营业，老板能看见站台入口、后勤门和货运侧线的路灯。",
+    "environmentDetails": ["收款夹保存着 22:47 的热茶小票。", "茶摊后门正对员工通道。"],
+    "searchableObjects": [
+      {
+        "id": "tea_receipts",
+        "name": "热茶小票",
+        "description": "22:47 的热茶小票写着杜站长签名，打破他一直在办公室的说法。",
+        "clueIds": ["clue_stationmaster_tea_receipt"]
+      },
+      {
+        "id": "vendor_backdoor_view",
+        "name": "后门视角",
+        "description": "从茶摊后门能看见有人把录音机包进报纸带向失物招领柜。",
+        "clueIds": ["clue_vendor_backdoor_sighting"],
+        "requiredStageId": "afternoon"
+      }
+    ]
+  },
+  {
+    "id": "clinic",
+    "name": "铁路医务室",
+    "description": "医务室负责夜班工人的外伤处理，昨晚有搬运工和信号员都在记录里出现。",
+    "environmentDetails": ["绷带盒旁有煤灰。", "值班表精确记录到 22:50。"],
+    "searchableObjects": [
+      {
+        "id": "medical_log",
+        "name": "医务记录",
+        "description": "马峻 22:52 处理过手臂擦伤，伤口里有货运车厢门上的蓝漆。",
+        "clueIds": ["clue_porter_arm_scratch"]
+      },
+      {
+        "id": "signalman_medicine",
+        "name": "信号员药盒",
+        "description": "药盒完整，排除信号员因病自行离站的说法。",
+        "clueIds": ["clue_medicine_red_herring"],
+        "requiredStageId": "afternoon"
+      }
+    ]
+  },
+  {
+    "id": "library",
+    "name": "候车室失物处",
+    "description": "候车室角落的失物招领柜由站长办公室管理，旧广播磁带和旅客遗失包都临时存放在这里。",
+    "environmentDetails": ["失物柜锁孔有新划痕。", "广播磁带盒少了一盘备用带。"],
+    "searchableObjects": [
+      {
+        "id": "lost_found_cabinet",
+        "name": "失物招领柜",
+        "description": "柜底夹层里有半截磁带盒，标签写着“23:05 侧线”。",
+        "clueIds": ["clue_half_tape_box"]
+      },
+      {
+        "id": "broadcast_tape_shelf",
+        "name": "广播磁带架",
+        "description": "备用带顺序被打乱，一盘空白带被换成了信号员的录音片段。",
+        "clueIds": ["clue_broadcast_tape_swap"],
+        "requiredStageId": "afternoon"
+      },
+      {
+        "id": "lost_found_log",
+        "name": "失物登记本",
+        "description": "登记本上杜站长的笔迹被描粗，时间从 22:55 改成了 23:10。",
+        "clueIds": ["clue_lost_found_time_edit"],
+        "requiredStageId": "afternoon"
+      }
+    ]
+  },
+  {
+    "id": "town_hall",
+    "name": "信号楼",
+    "description": "信号楼控制站台灯、侧线道岔和广播线路，季闻最后一次被看见就在这里值班。",
+    "environmentDetails": ["调度台上留着被剪断的录音线。", "侧线道岔记录纸被压在文件夹下。"],
+    "searchableObjects": [
+      {
+        "id": "signal_console",
+        "name": "信号控制台",
+        "description": "控制台录音线被剪断，断口和站长办公室工具剪一致。",
+        "clueIds": ["clue_cut_recorder_wire"]
+      },
+      {
+        "id": "switch_log",
+        "name": "侧线道岔记录",
+        "description": "记录显示 22:56 有人短暂切换到货运侧线，制造末班车进站延误。",
+        "clueIds": ["clue_siding_switch_log"]
+      },
+      {
+        "id": "dispatcher_timetable",
+        "name": "调度时间表",
+        "description": "时间表上 22:48 到 23:02 的行车窗口被铅笔改过。",
+        "clueIds": ["clue_altered_timetable"]
+      },
+      {
+        "id": "stationmaster_toolbox",
+        "name": "站长工具箱",
+        "description": "工具箱里少了一把剪线钳，盒底有新鲜铜屑。",
+        "clueIds": ["clue_missing_wire_cutter"],
+        "requiredStageId": "afternoon"
+      }
+    ]
+  }
+]

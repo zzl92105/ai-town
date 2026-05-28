@@ -1,4 +1,4 @@
-import { missingLedgerCase } from "./casePackage";
+import { canalMasksCase, missingLedgerCase, stationLastTrainCase } from "./casePackage";
 
 export type CaseCatalogEntry = {
   id: string;
@@ -19,19 +19,19 @@ export const caseCatalog: CaseCatalogEntry[] = [
     tags: ["失踪账本", "小镇政治", "证据链"],
   },
   {
-    id: "canal-masks",
-    title: "运河面具夜",
-    version: "0.1.0-design",
-    status: "planned",
-    briefing: "节庆巡游结束后，赞助人的假面和保险箱钥匙同时失踪。该案件用于后续验证多案件包加载流程。",
+    id: canalMasksCase.manifest.id,
+    title: canalMasksCase.caseFile.title,
+    version: canalMasksCase.manifest.version,
+    status: "playable",
+    briefing: canalMasksCase.caseFile.briefing,
     tags: ["节庆", "假面", "多嫌疑人"],
   },
   {
-    id: "station-last-train",
-    title: "末班车站台",
-    version: "0.1.0-design",
-    status: "planned",
-    briefing: "末班列车进站前，信号员留下半截录音后失踪。该案件会侧重时间表和路线矛盾。",
+    id: stationLastTrainCase.manifest.id,
+    title: stationLastTrainCase.caseFile.title,
+    version: stationLastTrainCase.manifest.version,
+    status: "playable",
+    briefing: stationLastTrainCase.caseFile.briefing,
     tags: ["时间表", "铁路", "录音"],
   },
 ];

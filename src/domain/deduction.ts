@@ -16,7 +16,7 @@ export function scoreDeduction(answer: FinalDeduction, truth: CaseTruth): Deduct
   const locationCorrect = answer.hiddenObjectLocationId === truth.hiddenObjectLocationId;
   const motiveCoverage = keywordCoverage(answer.motive, truth.motiveKeywords);
   const methodCoverage = keywordCoverage(answer.method, truth.methodKeywords);
-  const motiveCorrect = motiveCoverage >= 0.45 && containsAny(answer.motive, ["挪用", "曝光", "旧桥", "修缮款"]);
+  const motiveCorrect = motiveCoverage >= 0.45 && containsAny(answer.motive, truth.motiveKeywords);
   const methodCorrect = methodCoverage >= 0.5;
   const matchedEvidence = truth.requiredEvidenceIds.filter((id) => answer.evidenceClueIds.includes(id));
   const evidenceCoverage = matchedEvidence.length / truth.requiredEvidenceIds.length;
@@ -31,10 +31,10 @@ export function scoreDeduction(answer: FinalDeduction, truth: CaseTruth): Deduct
   }
 
   const reasons = [
-    culpritCorrect ? "真凶指向周启明。" : "真凶判断与标准答案不符。",
-    motiveCorrect ? "动机覆盖旧桥修缮款与曝光压力。" : "动机缺少旧桥修缮款挪用或曝光压力。",
-    methodCorrect ? "作案过程覆盖钥匙、档案室、账页和藏匿路径。" : "作案过程缺少关键步骤。",
-    locationCorrect ? "账本位置指向图书馆。" : "账本位置不正确。",
+    culpritCorrect ? "真凶判断正确。" : "真凶判断与标准答案不符。",
+    motiveCorrect ? "动机覆盖标准答案关键词。" : "动机缺少标准答案中的关键压力或目的。",
+    methodCorrect ? "作案过程覆盖关键步骤。" : "作案过程缺少关键步骤。",
+    locationCorrect ? "藏匿地点判断正确。" : "藏匿地点不正确。",
     `关键证据覆盖 ${matchedEvidence.length}/${truth.requiredEvidenceIds.length}。`,
   ];
 

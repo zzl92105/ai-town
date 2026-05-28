@@ -1,4 +1,4 @@
-import { missingLedgerCase } from "../data/casePackage";
+import { activeCasePackage } from "../data/casePackage";
 import type { DeductionScore, FinalDeduction } from "./types";
 
 const endingLabels: Record<DeductionScore["ending"], string> = {
@@ -9,19 +9,25 @@ const endingLabels: Record<DeductionScore["ending"], string> = {
 };
 
 export function buildEndingReview(answer: FinalDeduction, score: DeductionScore) {
-  const culprit = missingLedgerCase.npcs.find((npc) => npc.id === answer.culpritNpcId)?.name ?? answer.culpritNpcId;
+  const hiddenObjectLabel =
+    activeCasePackage.manifest.id === "station-last-train"
+      ? "半截录音"
+      : activeCasePackage.manifest.id === "canal-masks"
+        ? "银羽面具"
+        : "账本";
+  const culprit = activeCasePackage.npcs.find((npc) => npc.id === answer.culpritNpcId)?.name ?? answer.culpritNpcId;
   const location =
-    missingLedgerCase.locations.find((item) => item.id === answer.hiddenObjectLocationId)?.name ??
+    activeCasePackage.locations.find((item) => item.id === answer.hiddenObjectLocationId)?.name ??
     answer.hiddenObjectLocationId;
   const evidenceTitles = answer.evidenceClueIds
-    .map((id) => missingLedgerCase.clues.find((clue) => clue.id === id)?.title ?? id)
+    .map((id) => activeCasePackage.clues.find((clue) => clue.id === id)?.title ?? id)
     .join("、");
 
   return [
     `结局：${endingLabels[score.ending]}。`,
-    `你的结论指向 ${culprit}，账本位置判断为 ${location}。`,
+    `你的结论指向 ${culprit}，${hiddenObjectLabel}位置判断为 ${location}。`,
     `证据链覆盖率为 ${Math.round(score.evidenceCoverage * 100)}%，你提交的关键证据包括：${evidenceTitles || "未选择证据"}。`,
-    `标准真相：${missingLedgerCase.truth.canonicalTruth}`,
+    `标准真相：${activeCasePackage.truth.canonicalTruth}`,
     `评分说明：${score.reasons.join(" ")}`,
   ].join("\n");
 }

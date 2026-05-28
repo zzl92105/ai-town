@@ -1,0 +1,133 @@
+[
+  {
+    "id": "square",
+    "name": "巡游广场",
+    "description": "面具夜巡游的终点，彩带、灯架和公告牌还没有撤下。熄灯仪式发生时，所有人的视线都被烟火吸引到运河方向。",
+    "environmentDetails": ["主灯架的计时器停在 21:17。", "公告牌上贴着巡游队伍顺序。"],
+    "searchableObjects": [
+      {
+        "id": "square_lighting_rig",
+        "name": "主灯架",
+        "description": "灯架控制盒上有手动断电痕迹，熄灯不是普通故障。",
+        "clueIds": ["clue_blackout_switch"]
+      },
+      {
+        "id": "square_parade_board",
+        "name": "巡游顺序牌",
+        "description": "顺序牌显示银羽花车在熄灯前短暂停在赞助人宅邸后门。",
+        "clueIds": ["clue_float_route"]
+      },
+      {
+        "id": "square_confetti_bin",
+        "name": "彩纸回收桶",
+        "description": "回收桶里夹着一截银色羽片，边缘沾着花店常用的固定胶。",
+        "clueIds": ["clue_silver_feather_fragment"],
+        "requiredStageId": "afternoon"
+      }
+    ]
+  },
+  {
+    "id": "cafe",
+    "name": "运河咖啡棚",
+    "description": "临时咖啡棚靠近巡游后台，摊主能看见花车、赞助人宅邸侧门和运河步道。",
+    "environmentDetails": ["账台上留着面具夜特供饮品小票。", "后台通行章放在杯架旁。"],
+    "searchableObjects": [
+      {
+        "id": "cafe_receipts",
+        "name": "咖啡棚小票",
+        "description": "21:09 有人用赞助人名义买了两杯苦艾拿铁，其中一杯被送往花车后台。",
+        "clueIds": ["clue_absinthe_receipt"]
+      },
+      {
+        "id": "cafe_pass_stamp",
+        "name": "后台通行章",
+        "description": "通行章沾到银灰颜料，说明有人借咖啡棚身份进出后台。",
+        "clueIds": ["clue_backstage_stamp"],
+        "requiredStageId": "afternoon"
+      }
+    ]
+  },
+  {
+    "id": "clinic",
+    "name": "临时救护站",
+    "description": "巡游期间的救护站，记录了烟火后几名参与者的轻伤和用药。",
+    "environmentDetails": ["棉签盒旁有银灰颜料。", "值班记录精确到分钟。"],
+    "searchableObjects": [
+      {
+        "id": "clinic_log",
+        "name": "救护记录",
+        "description": "乔微在 21:23 处理过手掌划伤，伤口像被保险箱钥匙齿划到。",
+        "clueIds": ["clue_artist_palm_cut"]
+      },
+      {
+        "id": "clinic_sedative_box",
+        "name": "镇静药盒",
+        "description": "药盒完整，能排除有人用药放倒赞助人这条猜测。",
+        "clueIds": ["clue_sedative_red_herring"],
+        "requiredStageId": "afternoon"
+      }
+    ]
+  },
+  {
+    "id": "library",
+    "name": "水文档案展馆",
+    "description": "旧水文档案馆被临时布置成面具展馆，墙后保存着运河改造的旧胶片和图纸。",
+    "environmentDetails": ["展柜背后有一条能藏面具的检修槽。", "旧胶片柜近期被打开过。"],
+    "searchableObjects": [
+      {
+        "id": "archive_film_drawer",
+        "name": "旧胶片柜",
+        "description": "柜内缺了一格微型底片的位置，标签写着“东岸仓库拆迁”。",
+        "clueIds": ["clue_missing_microfilm"]
+      },
+      {
+        "id": "archive_display_slot",
+        "name": "展柜检修槽",
+        "description": "检修槽里有银灰颜料和细小花粉，足够藏下一副轻薄面具。",
+        "clueIds": ["clue_display_slot_dust"],
+        "requiredStageId": "afternoon"
+      },
+      {
+        "id": "archive_guestbook",
+        "name": "展馆留言册",
+        "description": "留言册上孟知远的签名被人描粗，时间栏改成了更晚的 21:30。",
+        "clueIds": ["clue_guestbook_time"],
+        "requiredStageId": "afternoon"
+      }
+    ]
+  },
+  {
+    "id": "town_hall",
+    "name": "赞助人宅邸",
+    "description": "韩砚舟为巡游提供资金，银羽面具和保险箱钥匙最后一次都在宅邸书房被看见。",
+    "environmentDetails": ["书房保险箱仍锁着。", "后门通向花车后台和水文档案展馆。"],
+    "searchableObjects": [
+      {
+        "id": "safe_table",
+        "name": "保险箱桌面",
+        "description": "桌面钥匙盘留下浅浅压痕，说明钥匙被取走后又放回过。",
+        "clueIds": ["clue_key_tray_imprint"]
+      },
+      {
+        "id": "study_mask_stand",
+        "name": "面具支架",
+        "description": "支架上残留银灰颜料，但没有强行撬动痕迹。",
+        "clueIds": ["clue_mask_stand_paint"]
+      },
+      {
+        "id": "backdoor_guest_log",
+        "name": "后门宾客登记",
+        "description": "登记本显示乔微在熄灯前后两次进入宅邸后门。",
+        "clueIds": ["clue_artist_backdoor_log"],
+        "requiredStageId": "afternoon"
+      },
+      {
+        "id": "sponsor_contract_folder",
+        "name": "运河合同夹",
+        "description": "合同夹中有运河东岸仓库拆迁补偿的异常批注，韩砚舟急着买下旧底片。",
+        "clueIds": ["clue_canal_contract_pressure"],
+        "requiredStageId": "afternoon"
+      }
+    ]
+  }
+]

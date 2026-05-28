@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { missingLedgerCase } from "../data/casePackage";
+import { activeCasePackage as missingLedgerCase, defaultCaseId, setActiveCaseId } from "../data/casePackage";
 import { getAvailableContradictions, getContradictionRule } from "../domain/contradictionRules";
 import { scoreDeduction } from "../domain/deduction";
 import { getAvailableDeductionRules, getDeductionRule } from "../domain/deductionRules";
@@ -47,12 +47,12 @@ export function getStageGate(stageId: StageId, discoveredClueIds: string[], dial
   }
   if (stageId === "afternoon") {
     const questionedNpcs = new Set(dialogue.filter((message) => message.role === "npc").map((message) => message.npcId));
-    const ok = discoveredClueIds.length >= 6 && questionedNpcs.size >= 3;
+    const ok = discoveredClueIds.length >= 10 && questionedNpcs.size >= 4;
     return {
       ok,
       message: ok
         ? "证词矛盾已经足够清晰，可以推进到傍晚。"
-        : "下午阶段需要至少 6 条线索，并问询至少 3 名 NPC 后再推进。",
+        : "下午阶段需要至少 10 条线索，并问询至少 4 名 NPC 后再推进。",
     };
   }
   return { ok: false, message: "傍晚阶段请整理证据并提交最终推理。" };
@@ -217,6 +217,7 @@ export function getCurrentTasks(params: {
 
 type GameState = {
   view: View;
+  activeCaseId: string;
   activeSaveId?: string;
   saveSummaries: SaveSummary[];
   stageId: StageId;
@@ -242,7 +243,7 @@ type GameState = {
   hydrateDesktopStorage: () => Promise<void>;
   refreshSaves: () => void;
   setView: (view: View) => void;
-  startNewGame: () => void;
+  startNewGame: (caseId?: string) => void;
   loadSave: (saveId: string) => void;
   deleteSave: (saveId: string) => void;
   selectLocation: (locationId: string) => void;
@@ -253,6 +254,7 @@ type GameState = {
   askFreeQuestion: (message: string) => Promise<void>;
   combineDeduction: (ruleId: string) => void;
   identifyContradiction: (ruleId: string) => void;
+  confrontContradiction: (ruleId: string) => void;
   markClue: (clueId: string, mark: ClueMark) => void;
   setNote: (note: string) => void;
   toggleEvidenceChainClue: (clueId: string) => void;
@@ -266,12 +268,15 @@ type GameState = {
 const now = () => new Date().toISOString();
 const createId = (prefix: string) => `${prefix}_${Math.random().toString(36).slice(2, 10)}`;
 const createSaveId = () => `save_${Date.now().toString(36)}_${Math.random().toString(36).slice(2, 8)}`;
+const firstLocationId = () => missingLedgerCase.locations.find((location) => location.id === "town_hall")?.id ?? missingLedgerCase.locations[0]?.id ?? "square";
+const firstNpcId = () =>
+  missingLedgerCase.npcs.find((npc) => npc.locationId === firstLocationId())?.id ?? missingLedgerCase.npcs[0]?.id ?? "";
 
 const initialEvent = (): InvestigationEvent => ({
   id: createId("event"),
   stageId: "morning",
   type: "stage",
-  summary: "你抵达小镇，接下镇公所失踪账本案。",
+  summary: `你抵达小镇，接下${missingLedgerCase.caseFile.title}。`,
   npcIds: [],
   clueIds: [],
   importance: 8,
@@ -334,11 +339,12 @@ function persistState(state: GameState) {
 
 export const useGameStore = create<GameState>((set, get) => ({
   view: "select",
+  activeCaseId: defaultCaseId,
   activeSaveId: settings.recentSaveId,
   saveSummaries: localSaveRepository.listSaves(),
   stageId: "morning",
-  currentLocationId: "town_hall",
-  currentNpcId: "mayor_zhou",
+  currentLocationId: firstLocationId(),
+  currentNpcId: firstNpcId(),
   discoveredClueIds: [],
   clueMarks: {},
   npcTrustScores: initialTrustScores(),
@@ -368,8 +374,10 @@ export const useGameStore = create<GameState>((set, get) => ({
       if (recentSaveId) {
         const snapshot = await tauriSaveRepository.loadSave(recentSaveId);
         if (snapshot) {
+          setActiveCaseId(snapshot.caseId);
           localSaveRepository.upsertSave(snapshot);
           set({
+            activeCaseId: snapshot.caseId,
             activeSaveId: snapshot.id,
             saveSummaries: localSaveRepository.listSaves(),
             stageId: snapshot.currentStageId,
@@ -404,7 +412,8 @@ export const useGameStore = create<GameState>((set, get) => ({
   },
   refreshSaves: () => set({ saveSummaries: localSaveRepository.listSaves() }),
   setView: (view) => set({ view }),
-  startNewGame: () => {
+  startNewGame: (caseId = defaultCaseId) => {
+    setActiveCaseId(caseId);
     const createdAt = now();
     const saveId = createSaveId();
     const initial: SaveSnapshot = {
@@ -412,8 +421,8 @@ export const useGameStore = create<GameState>((set, get) => ({
       caseId: missingLedgerCase.manifest.id,
       caseVersion: missingLedgerCase.manifest.version,
       currentStageId: "morning",
-      currentLocationId: "town_hall",
-      currentNpcId: "mayor_zhou",
+      currentLocationId: firstLocationId(),
+      currentNpcId: firstNpcId(),
       discoveredClueIds: [],
       clueMarks: {},
       npcTrustScores: initialTrustScores(),
@@ -437,6 +446,7 @@ export const useGameStore = create<GameState>((set, get) => ({
         .catch((error) => console.error("SQLite settings save failed", error));
     }
     set({
+      activeCaseId: missingLedgerCase.manifest.id,
       activeSaveId: saveId,
       view: "desk",
       saveSummaries: localSaveRepository.listSaves(),
@@ -462,8 +472,10 @@ export const useGameStore = create<GameState>((set, get) => ({
   loadSave: (saveId) => {
     const snapshot = localSaveRepository.loadSave(saveId);
     if (!snapshot) return;
+    setActiveCaseId(snapshot.caseId);
     localSaveRepository.saveSettings({ ...localSaveRepository.loadSettings(), recentSaveId: saveId });
     set({
+      activeCaseId: snapshot.caseId,
       activeSaveId: saveId,
       view: "desk",
       saveSummaries: localSaveRepository.listSaves(),
@@ -830,6 +842,55 @@ export const useGameStore = create<GameState>((set, get) => ({
           stageId: state.stageId,
           type: "contradiction",
           summary: rule.summary,
+          npcIds: rule.npcIds,
+          clueIds: rule.requiredClueIds,
+          importance: 9,
+          createdAt: now(),
+        },
+        ...state.events,
+      ],
+    });
+    persistState(get());
+  },
+  confrontContradiction: (ruleId) => {
+    const state = get();
+    const rule = getContradictionRule(ruleId);
+    const npc = missingLedgerCase.npcs.find((item) => item.id === state.currentNpcId);
+    if (!rule || !npc) return;
+    const hasRequiredClues = rule.requiredClueIds.every((id) => state.discoveredClueIds.includes(id));
+    if (!hasRequiredClues || state.resolvedContradictionIds.includes(rule.id) || !rule.npcIds.includes(npc.id)) return;
+
+    const nextTrustScores = { ...state.npcTrustScores };
+    rule.npcIds.forEach((npcId) => {
+      const targetNpc = missingLedgerCase.npcs.find((item) => item.id === npcId);
+      nextTrustScores[npcId] = clampTrust((nextTrustScores[npcId] ?? targetNpc?.trustScore ?? 50) - (npcId === npc.id ? 4 : 2));
+    });
+
+    const playerMessage: DialogueMessage = {
+      id: createId("msg"),
+      npcId: npc.id,
+      role: "player",
+      content: `对质：${rule.title}`,
+      createdAt: now(),
+    };
+    const npcMessage: DialogueMessage = {
+      id: createId("msg"),
+      npcId: npc.id,
+      role: "npc",
+      content: `你把证据摆到我面前，我不能再把这件事说成巧合。${rule.summary}`,
+      createdAt: now(),
+    };
+
+    set({
+      resolvedContradictionIds: [...state.resolvedContradictionIds, rule.id],
+      npcTrustScores: nextTrustScores,
+      dialogue: [...state.dialogue, playerMessage, npcMessage],
+      events: [
+        {
+          id: createId("event"),
+          stageId: state.stageId,
+          type: "contradiction",
+          summary: `你向${npc.name}对质“${rule.title}”：${rule.summary}`,
           npcIds: rule.npcIds,
           clueIds: rule.requiredClueIds,
           importance: 9,

@@ -16,6 +16,32 @@ describe("gameStore investigation loop", () => {
     expect(state.events[0].summary).toContain("备用钥匙");
   });
 
+  it("starts the canal masks case from the catalog id", () => {
+    useGameStore.getState().startNewGame("canal-masks");
+
+    useGameStore.getState().investigateObject("study_mask_stand");
+
+    const state = useGameStore.getState();
+    expect(state.activeCaseId).toBe("canal-masks");
+    expect(state.currentLocationId).toBe("town_hall");
+    expect(state.currentNpcId).toBe("sponsor_han");
+    expect(state.discoveredClueIds).toContain("clue_mask_stand_paint");
+    expect(state.events[0].summary).toContain("面具支架");
+  });
+
+  it("starts the station last train case from the catalog id", () => {
+    useGameStore.getState().startNewGame("station-last-train");
+
+    useGameStore.getState().investigateObject("signal_console");
+
+    const state = useGameStore.getState();
+    expect(state.activeCaseId).toBe("station-last-train");
+    expect(state.currentLocationId).toBe("town_hall");
+    expect(state.currentNpcId).toBe("stationmaster_du");
+    expect(state.discoveredClueIds).toContain("clue_cut_recorder_wire");
+    expect(state.events[0].summary).toContain("录音线");
+  });
+
   it("unlocks topic responses when required clues are discovered", () => {
     useGameStore.getState().investigateObject("spare_key_box");
     useGameStore.getState().investigateObject("archive_cabinet");
@@ -115,6 +141,11 @@ describe("gameStore investigation loop", () => {
         "clue_library_dust_gap",
         "clue_mayor_reporter_argument",
         "clue_cafe_receipt_time",
+        "clue_bridge_invoice_copy",
+        "clue_council_meeting_minutes",
+        "clue_library_call_slip",
+        "deduction_motive_financial_chain",
+        "deduction_hidden_route_library",
       ],
     });
     const saveId = useGameStore.getState().activeSaveId!;
@@ -129,6 +160,11 @@ describe("gameStore investigation loop", () => {
         "clue_library_dust_gap",
         "clue_mayor_reporter_argument",
         "clue_cafe_receipt_time",
+        "clue_bridge_invoice_copy",
+        "clue_council_meeting_minutes",
+        "clue_library_call_slip",
+        "deduction_motive_financial_chain",
+        "deduction_hidden_route_library",
       ],
     };
 
@@ -228,5 +264,23 @@ describe("gameStore investigation loop", () => {
       npcIds: ["mayor_zhou", "cafe_shen"],
       clueIds: ["clue_spare_key_log", "clue_archive_schedule", "clue_cafe_receipt_time"],
     });
+  });
+
+  it("confronts the current NPC with an available contradiction", () => {
+    useGameStore.getState().investigateObject("spare_key_box");
+    useGameStore.getState().investigateObject("archive_schedule");
+    useGameStore.getState().investigateObject("archive_cabinet");
+    useGameStore.getState().advanceStage();
+    useGameStore.getState().selectLocation("cafe");
+    useGameStore.getState().investigateObject("cafe_counter");
+    useGameStore.getState().selectNpc("mayor_zhou");
+
+    useGameStore.getState().confrontContradiction("contradiction_mayor_alibi");
+
+    const state = useGameStore.getState();
+    expect(state.resolvedContradictionIds).toContain("contradiction_mayor_alibi");
+    expect(state.dialogue.some((message) => message.content.includes("对质：镇长整晚在会议室"))).toBe(true);
+    expect(state.dialogue.some((message) => message.content.includes("不能再把这件事说成巧合"))).toBe(true);
+    expect(state.events[0].summary).toContain("你向周启明对质");
   });
 });

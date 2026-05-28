@@ -16,7 +16,7 @@
     "id": "afternoon",
     "name": "下午",
     "description": "证词开始互相冲突，开放更多追问。",
-    "advanceHint": "发现至少 6 条线索并问询关键 NPC 后可进入傍晚。",
+    "advanceHint": "发现至少 10 条线索并问询 4 名 NPC 后可进入傍晚。",
     "npcLocations": {
       "mayor_zhou": "town_hall",
       "reporter_xu": "cafe",

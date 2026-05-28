@@ -1,0 +1,41 @@
+[
+  {
+    "id": "morning",
+    "name": "上午",
+    "description": "还原末班车前的站台时间线。",
+    "advanceHint": "发现至少 3 条线索后可进入下午。",
+    "npcLocations": {
+      "stationmaster_du": "town_hall",
+      "engineer_lu": "square",
+      "porter_ma": "clinic",
+      "vendor_song": "cafe",
+      "reporter_chen": "library"
+    }
+  },
+  {
+    "id": "afternoon",
+    "name": "下午",
+    "description": "追问侧线、录音和改动过的时间表。",
+    "advanceHint": "发现至少 10 条线索并问询 4 名 NPC 后可进入傍晚。",
+    "npcLocations": {
+      "stationmaster_du": "town_hall",
+      "engineer_lu": "square",
+      "porter_ma": "town_hall",
+      "vendor_song": "cafe",
+      "reporter_chen": "library"
+    }
+  },
+  {
+    "id": "evening",
+    "name": "傍晚",
+    "description": "整理时间线，提交末班车站台真相。",
+    "advanceHint": "提交结论后进入结局。",
+    "npcLocations": {
+      "stationmaster_du": "library",
+      "engineer_lu": "square",
+      "porter_ma": "town_hall",
+      "vendor_song": "cafe",
+      "reporter_chen": "library"
+    }
+  }
+]
